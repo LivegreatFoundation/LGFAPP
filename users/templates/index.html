@@ -34,9 +34,9 @@
                             <div class="swiper-slide__inner">
                                 <div class="row">
                                     <div class="col-xl-12">
-                                        <p>Nurturing Communities</p>
-                                        <h2>One Woman <br> at a Time.</h2>
-                                        <a href="about.html" class="thm-btn">Learn More</a>
+                                        <p>We can make a Difference</p>
+                                        <h2>Achieving Zero waste  <br> Circular economy</h2>
+                                        <a href="" class="thm-btn">How we do it</a>
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                     <div class="col-xl-12">
                                         <p>Elevating Women,</p>
                                         <h2> Uplifting Communities. </h2>
-                                        <a href="about.html" class="thm-btn">Learn More</a>
+                                        <a href="" class="thm-btn">Learn More</a>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                     <div class="col-xl-12">
                                         <p>Helping Them Today</p>
                                         <h2>We Can Make <br> A Difference</h2>
-                                        <a href="about.html" class="thm-btn">Learn More</a>
+                                        <a href="" class="thm-btn">Learn More</a>
                                     </div>
                                 </div>
                             </div>
@@ -81,6 +81,51 @@
 
         <!-- Main Slider End -->
 
+        <section class="welcome-two" style="background-image: url('{% static 'assets/images/backgrounds/welcome_one_bg.jpg' %}');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8">
+                        <div class="welcome-two__left">
+                            <div class="block-title text-left">
+                                <h4>Our Community</h4>
+                                <h2>Meet the
+                                    Eco Warriors
+                                    Of Nairobi</h2>
+                            </div>
+                            <!-- <div class="welcome-two__checks">
+                                <a href="#" class="welcome-two__check-one"><i class="fa fa-check"></i>Prosper in this
+                                    volatile</a>
+                                <a href="#"><i class="fa fa-check"></i>Prosper in this volatile</a> <a href="#"><i class="fa fa-check"></i>Prosper in this volatile</a>
+                            </div> -->
+                            {% if about_us %}
+                         
+
+                            <p class="welcome-two__text"> {{ about_us.content | safe }}
+                                </p>
+                                {% else %}
+                                <p class="welcome-two__text">Update About us content in the Admin (Edit profile section)</p>
+                                {% endif %}
+                                <div class="welcome-two__btn">
+                                <a href="about.html" class="thm-btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="welcome-two__right">
+                            <div class="welcome-two__img">
+                                <img src="{% static 'assets/images/resources/zerowaste.png' %}" alt="">
+                                <!-- <div class="welcome-two__counter">
+                                    <h3>10,000+</h3>
+                                    <p>Garbage<br>Collected</p>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+<!-- About us End -->
         <section class="feature-one">
             <div class="container">
                 <div class="feature-one__inner">
@@ -159,7 +204,91 @@
             </div>
         </section>
         <!--Give Helping Start-->
-     
+        <section class="events-and-newsletter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="block-title text-left">
+                            <h4>List of Events</h4>
+                            <h2>Upcoming Events</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <a href="#" class="thm-btn events-and-newsletter__btn">All Events</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8">
+                        <div class="upcoming-events">
+                            <!--Upcoming Events Single-->
+                            <div class="upcoming-events__sinlge">
+                                <div class="upcoming-events__img-box">
+                                    <div class="upcoming-events__img">
+                                        <img src="{% static 'assets/images/event/upcoming-event-img-1.jpg' %}" alt="">
+                                    </div>
+                                    <div class="upcoming-events__date-box">
+                                        <p>23 <br> Dec</p>
+                                    </div>
+                                </div>
+                                <div class="upcoming-events__content">
+                                    <ul class="upcoming-events__meta-box list-unstyled">
+                                        <li><i class="far fa-clock"></i>04:00 am</li>
+                                        <li><span>/</span></li>
+                                        <li><i class="far fa-map"></i>66 broklyn Street, New York</li>
+                                    </ul>
+                                    <div class="upcoming-events__title">
+                                        <h3><a href="event-details.html">Mission for Fresh &amp; Clean Water</a></h3>
+                                    </div>
+                                    <p class="upcoming-events__text">Dignissim cras tincidunt lorem ipsum is simply free
+                                        text feugiat at augue. Id purus integer orci.</p>
+                                </div>
+                            </div>
+                            <!--Upcoming Events Single-->
+                            <div class="upcoming-events__sinlge">
+                                <div class="upcoming-events__img-box">
+                                    <div class="upcoming-events__img">
+                                        <img src="{% static 'assets/images/event/upcoming-event-img-2.jpg' %}" alt="">
+                                    </div>
+                                    <div class="upcoming-events__date-box">
+                                        <p>23 <br> Dec</p>
+                                    </div>
+                                </div>
+                                <div class="upcoming-events__content">
+                                    <ul class="upcoming-events__meta-box list-unstyled">
+                                        <li><i class="far fa-clock"></i>04:00 am</li>
+                                        <li><span>/</span></li>
+                                        <li><i class="far fa-map"></i>66 broklyn Street, New York</li>
+                                    </ul>
+                                    <div class="upcoming-events__title">
+                                        <h3><a href="event-details.html">Mission for Fresh &amp; Clean Water</a></h3>
+                                    </div>
+                                    <p class="upcoming-events__text">Dignissim cras tincidunt lorem ipsum is simply free
+                                        text feugiat at augue. Id purus integer orci.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="events-and-newsletter__newsletter">
+                            <div class="events-and-newsletter__newsletter-title">
+                                <h2>Future Events</h2>
+                                <p>Recieve event invites in your mail.</p>
+                            </div>
+                            <form action="#" class="events-and-newsletter__newsletter-form">
+                                <div class="events-and-newsletter__newsletter-input-box">
+                                    <input type="text" placeholder="Your name">
+                                </div>
+                                <div class="events-and-newsletter__newsletter-input-box">
+                                    <input type="email" placeholder="Email address">
+                                </div>
+                                <button type="submit" class="thm-btn events-and-newsletter__subscribe-btn">Subscribe
+                                    Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
   
         <!--Charity Activity Start-->
       
