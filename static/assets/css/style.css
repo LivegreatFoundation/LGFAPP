@@ -157,8 +157,11 @@ li {
 }
 
 .block-title h2 {
-    font-size: 50px;
-    line-height: 60px;
+    font-size: 90px;
+    color: var(--thm-primary);
+    line-height: 70px;
+    display: inline-block;
+    font-family: var(--thm-font-shadows);
 }
 
 
