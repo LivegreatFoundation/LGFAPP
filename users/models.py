@@ -50,4 +50,25 @@ class Editpage(models.Model):
     def __str__(self):
         return self.get_section_name_display()
     
+
+class MainProgrames(models.Model):
+    SECTION_CHOICES = [
+        ('Programme1', 'Programe | Programme1'),
+        ('Programme2', 'Programe | Programme2'),
+        ('Programme3', 'Programe | Programme3'),
+        ('Programme4', 'Programe | Programme4'),
+
+    ]
+
+    programe_name = models.CharField(max_length=100, choices=SECTION_CHOICES, unique=True)
+    programe_description = RichTextField()
+    programe_objective1 = RichTextField() 
+    programe_objective2 = RichTextField()
+    programe_objective3 = RichTextField()
+    programe_objective4 = RichTextField()
+    
+
+    def __str__(self):
+        return self.get_section_name_display()
+    
     

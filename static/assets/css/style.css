@@ -49,13 +49,13 @@ font-family: 'Rubik', sans-serif;
     --thm-font: 'Poppins', serif;
     --thm-font-shadows: 'Poppins', serif;
     --thm-font-abril: 'Poppins', serif;
-    --thm-base: #f64574;
+    --thm-base: #38b000;
     --thm-base-rgb: 257, 155, 0;
-    --thm-primary: #f64574;
+    --thm-primary: #38b000;
     --thm-primary-rgb: 255, 109, 18;
-    --thm-black: #24202b;
+    --thm-black: #004b23;
     --thm-black-rgb: 44, 39, 52;
-    --thm-gray: #0f010b;
+    --thm-gray: #004b23;
     --thm-border-radius: 8px;
     --thm-white:#ffffff;
 }
@@ -1334,7 +1334,7 @@ li {
     height: 100%;
     width: 100%;
     content: "";
-    background: rgba(37, 3, 33, 0.485);
+    background: rgba(0, 100, 0, 0.485);
     z-index: -1;
 }
 

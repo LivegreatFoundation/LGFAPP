@@ -30,6 +30,7 @@ urlpatterns = [
     path('logout/', user_views.logout, name='logout'),
     path('', include('users.urls')), 
     path('blogs/', include('blogapp.urls')),
+    path('events/', include('events.urls')),
   
 ]
 

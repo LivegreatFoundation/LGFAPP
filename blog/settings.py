@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'graphene_django',
     'users.apps.UsersConfig',
     'blogapp',
+    'events',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
