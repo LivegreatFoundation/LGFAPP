@@ -8,98 +8,83 @@
 </div>
     <div class="page-wrapper">
 
-        <!-- Main Slider Start -->
         <section class="main-slider main-slider-two">
-            <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
-    "effect": "fade",
-    "pagination": {
-        "el": "#main-slider-pagination",
-        "type": "bullets",
-        "clickable": true
-      },
-    "navigation": {
-        "nextEl": ".main-slider-button-next",
-        "prevEl": ".main-slider-button-prev",
-        "clickable": true
-    },
-    "autoplay": {
-        "delay": 5000
-    }}'>
-
+            <div class="swiper-container thm-swiper__slider" data-swiper-options='{
+                "slidesPerView": 1,
+                "loop": true,
+                "effect": "fade",
+                "pagination": {
+                    "el": "#main-slider-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                },
+                "navigation": {
+                    "nextEl": ".main-slider-button-next",
+                    "prevEl": ".main-slider-button-prev",
+                    "clickable": true
+                },
+                "autoplay": {
+                    "delay": 3000
+                }}'>
                 <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
                     <div class="swiper-slide">
-                        <div class="image-layer"
-                        style="background-image: url('{% static 'assets/images/main-slider/slider-2-1.jpg' %}');"></div>
-                        <br>
+<div class="image-layer" style="background-image: url('{% if hnew.slider_image %}{{ hnew.slider_image.cdn_url }}{% else %}{% static 'assets/images/main-slider/slider-2-1.jpg' %}{% endif %}');"></div>                       
                         <div class="container">
                             <div class="swiper-slide__inner">
                                 <div class="row">
                                     <div class="col-xl-12">
                                         {% if hnew %}
-                                        <h2 class=""> {{ hnew.heading | safe }} </h2>
-                                            {% else %}
-                                            <p class="">small title here </p>
-                                            {% endif %}
-            
-                                                    {% if hnew %}
-                                        <p class="">{{ hnew.content | safe }}</p>
-                                            {% else %}
-                                            <h2 class="">Big title here</h2>
-                                            {% endif %}
-                                            <br>
+                                            <h2>{{ hnew.heading | safe }}</h2>
+                                            <p>{{ hnew.content | safe }}</p>
+                                        {% else %}
+                                            <h2>Small title here</h2>
+                                            <p>Big title here</p>
+                                        {% endif %}
+                                        <br><br>
                                         <a href="{% url 'users:aboutus' %}" class="thm-btn">Learn More</a>
                                     </div>
                                 </div>
                             </div>
-                         
                         </div>
                     </div>
+        
+                    <!-- Slide 2 -->
                     <div class="swiper-slide">
-                        <div class="image-layer"
-                            style="background-image: url('{% static 'assets/images/main-slider/slider-2-2.jpg' %}');"></div>
-                            <br>
-                            <div class="container">
+                        <div class="image-layer" style="background-image: url('{% if hneww.slider_image %}{{ hneww.slider_image.cdn_url }}{% else %}{% static 'assets/images/main-slider/slider-2-1.jpg' %}{% endif %}');"></div>                      
+                        <div class="container">
                             <div class="swiper-slide__inner">
                                 <div class="row">
                                     <div class="col-xl-12">
                                         {% if hneww %}
-                                        <h2 class=""> {{ hneww.heading | safe }} </h2>                               
-                                                     {% else %}
-                                            <p class="">small title here </p>
-                                            {% endif %}
-            
-                                                    {% if hneww %}
-                                                    <p class="">{{ hneww.content | safe }}</p>                                            {% else %}
-                                            <h2 class="">Big title here</h2>
-                                            {% endif %}
-                                            <br><br>
+                                            <h2>{{ hneww.heading | safe }}</h2>
+                                            <p>{{ hneww.content | safe }}</p>
+                                        {% else %}
+                                            <h2>Small title here</h2>
+                                            <p>Big title here</p>
+                                        {% endif %}
+                                        <br><br>
                                         <a href="{% url 'users:aboutus' %}" class="thm-btn">Learn More</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="image-layer"
-                            style="background-image: url('{% static 'assets/images/main-slider/slider-2-1.jpg' %}');"></div>
-                            <br>
-                            <div class="container">
+        
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide"> 
+                        <div class="image-layer" style="background-image: url('{% if hnewww.slider_image %}{{ hnewww.slider_image.cdn_url }}{% else %}{% static 'assets/images/main-slider/slider-2-1.jpg' %}{% endif %}');"></div>                        <div class="container">
                             <div class="swiper-slide__inner">
                                 <div class="row">
                                     <div class="col-xl-12">
                                         {% if hnewww %}
-
-                                        <h2 class=""> {{ hnewww.heading | safe }} </h2>
-                                     {% else %}
-                                            <h2 class="">small title here </h2>
-                                  {% endif %}
-            
-                                         {% if hnewww %}
-                                         <p class="">{{ hnewww.content | safe }}</p>                  
-                                    {% else %}                                          
-                                            <h2 class="">Big title here</h2>
-                                            {% endif %}
-                                            <br><br>
+                                            <h2>{{ hnewww.heading | safe }}</h2>
+                                            <p>{{ hnewww.content | safe }}</p>
+                                        {% else %}
+                                            <h2>Small title here</h2>
+                                            <p>Big title here</p>
+                                        {% endif %}
+                                        <br><br>
                                         <a href="{% url 'users:aboutus' %}" class="thm-btn">Learn More</a>
                                     </div>
                                 </div>
@@ -107,13 +92,88 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-pagination" id="main-slider-pagination">
-
+                <div class="swiper-pagination" id="main-slider-pagination"></div>
+            </div>
+        </section>
+        <section  class="you-can-help" style="background-image: url('{% static 'assets/images/backgrounds/you_can_help_bg.jpg' %}');">
+            <div class="you-can-help-img">
+                <img src="{% static 'assets/images/resources/you_can_help_img.png' %}" alt="">
+            </div>
+            <div class="container"style="margin-top: 45px;" >
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="you-can-help__left">
+                            <div class="block-title text-left">
+                                {% if second_section %}
+                                    <h4>{{ second_section.subtitle | safe }}</h4>
+                                    <h2>{{ second_section.title | safe }}</h2>
+                                {% else %}
+                                    <h4>Green Guardians of Nairobi</h4>
+                                    <h2>Changing our community, one innovative solution at a time.</h2>
+                                {% endif %}
+                            </div>
+                            <div class="you-can-help__three-icon">
+                                <ul class="list-unstyled">
+                                    {% if second_section_icons %}
+                                        {% for icon in second_section_icons %}
+                                        <li>
+                                            <div class="icon-box">
+                                                <span class="{{ icon.icon_class }}"></span>
+                                            </div>
+                                            <div class="text">
+                                                <p>{{ icon.text | safe }}</p>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li>
+                                            <div class="icon-box">
+                                                <span class="icon-vegetable"></span>
+                                            </div>
+                                            <div class="text">
+                                                <p>Food</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="icon-box">
+                                                <span class="icon-water-1"></span>
+                                            </div>
+                                            <div class="text">
+                                                <p>Water</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="icon-box">
+                                                <span class="icon-stethoscope"></span>
+                                            </div>
+                                            <div class="text">
+                                                <p>Medical</p>
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="you-can-help__right">
+                            <div class="you-can-help__give-box">
+                                <div class="you-can-help__give-text-box" >
+                                    {% if second_section_box %}
+                                        <p >{{ second_section_box.text | safe }}</p>
+                                    {% else %}
+                                        <p>Give Education to Kids</p>
+                                    {% endif %}
+                                </div>
+                                <div class="you-can-help__icon-box">
+                                    <span class="icon-graduated"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        
-
         <!-- Main Slider End -->
 
         <!-- <section class="feature-one">
@@ -247,62 +307,7 @@
                 </div>
             </div>
         </section>
-        <section class="you-can-help" style="background-image: url('{% static 'assets/ibackgrounds/you_can_help_bg.jpg' %}');">
-            <div class="you-can-help-img"><img src="{% static 'assets/images/resources/you_can_help_img.png' %}" alt=""></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="you-can-help__left">
-                            <div class="block-title text-left">
-                                <h4>Green Guardians of Nairobi</h4>
-                                <h2>Changing our community, one innovative solution at a time.</h2>
-                            </div>
-                            <div class="you-can-help__three-icon">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <div class="icon-box">
-                                            <span class="icon-vegetable"></span>
-                                        </div>
-                                        <div class="text">
-                                            <p>Food</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon-box">
-                                            <span class="icon-water-1"></span>
-                                        </div>
-                                        <div class="text">
-                                            <p>Water</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon-box">
-                                            <span class="icon-stethoscope"></span>
-                                        </div>
-                                        <div class="text">
-                                            <p>Medical</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="you-can-help__right">
-                            <div class="you-can-help__give-box">
-                                <div class="you-can-help__give-text-box">
-                                    <p>Give Education to Kids</p>
-                                </div>
-                                <div class="you-can-help__icon-box">
-                                    <span class="icon-graduated"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
+       
         <!--Charity Activity End-->
     <br><br><br><br>
         <section class="make-donation">

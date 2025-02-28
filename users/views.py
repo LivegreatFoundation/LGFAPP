@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
-from . models import Editpage
+from . models import Editpage,SecondSection,SecondSectionIcon,SecondSectionBox
 
 from django.shortcuts import render,redirect,HttpResponse
 from django.http import Http404
@@ -24,6 +24,9 @@ def home(request):
     team2 = Editpage.objects.filter(section_name='team2').first()
     team3 = Editpage.objects.filter(section_name='team3').first()
     home_section = Editpage.objects.filter(section_name='home_section').first()
+    second_section = SecondSection.objects.first()
+    second_section_icons = SecondSectionIcon.objects.all().order_by('order')
+    second_section_box = SecondSectionBox.objects.first()
 
     # Add all the variables to the context dictionary
     content = {
@@ -41,6 +44,10 @@ def home(request):
         'team1': team1,
         'team2': team2,
         'team3': team3,
+        'second_section': second_section ,
+        'second_section_icons': second_section_icons,
+        'second_section_box': second_section_box,
+        
         
     }
 

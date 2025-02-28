@@ -46,16 +46,16 @@ font-family: 'Rubik', sans-serif;
 */
 
 :root {
-    --thm-font: 'Rubik', sans-serif;
-    --thm-font-shadows: 'Shadows Into Light', cursive;
-    --thm-font-abril: 'Abril Fatface', cursive;
+    --thm-font: 'Poppins', serif;
+    --thm-font-shadows: 'Poppins', serif;
+    --thm-font-abril: 'Poppins', serif;
     --thm-base: #38b000;
     --thm-base-rgb: 257, 155, 0;
     --thm-primary: #38b000;
     --thm-primary-rgb: 255, 109, 18;
-    --thm-black: #24202b;
+    --thm-black: #004b23;
     --thm-black-rgb: 44, 39, 52;
-    --thm-gray: #0f010b;
+    --thm-gray: #004b23;
     --thm-border-radius: 8px;
     --thm-white:#ffffff;
 }
@@ -125,17 +125,17 @@ li {
 
 .block-title h4 {
     position: relative;
-    font-size: 60px;
+
+    font-size: 50px;
     color: var(--thm-primary);
-    line-height: 80px;
+    line-height: 60px;
     display: inline-block;
     font-family: var(--thm-font-shadows);
-    font-weight: 600;
+    font-weight: 700;
 }
-
 .block-title h2 {
-    font-size: 50px;
-    line-height: 60px;
+    font-size: 30px;
+    line-height: 40px;
 }
 
 
@@ -1334,7 +1334,7 @@ li {
     height: 100%;
     width: 100%;
     content: "";
-    background: rgba(37, 3, 33, 0.403);
+    background: rgba(0, 100, 0, 0.485);
     z-index: -1;
 }
 
@@ -1342,15 +1342,15 @@ li {
     position: relative;
     display: block;
     text-align: center;
-    padding-top: 107px;
-    padding-bottom: 210px;
+    padding-top: 240px;
+    padding-bottom: 250px;
 }
 
 .main-slider p {
     position: relative;
     display: inline-block;
     margin: 0;
-    font-size: 50px;
+    font-size: 30px;
     color: #ffffff;
     font-family: var(--thm-font);
     line-height: 0px;
@@ -1383,8 +1383,8 @@ li {
     margin-top: 10px;
     margin-bottom: 41px;
     color: #fff;
-    font-size: 110px;
-    line-height: 120px;
+    font-size: 90px;
+    line-height: 70px;
     opacity: 0;
     visibility: hidden;
     -webkit-transform: translateY(90px);
@@ -3873,7 +3873,7 @@ li {
 }
 
 .you-can-help__give-text-box p {
-    font-size: 30px;
+    font-size: 20px;
     color: var(--thm-black);
     font-family: var(--thm-font-shadows);
     margin: 0;
@@ -3883,15 +3883,15 @@ li {
     position: absolute;
     top: -30px;
     right: -30px;
-    height: 106px;
-    width: 106px;
+    height: 86px;
+    width: 86px;
     background: var(--thm-primary);
     border-radius: 50%;
     color: #ffffff;
-    font-size: 55px;
+    font-size: 25px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
 }
 
 /*--------------------------------------------------------------
