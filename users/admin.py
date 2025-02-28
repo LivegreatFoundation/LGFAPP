@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Profile,Editpage
+from . models import Profile,Editpage,SecondSection,SecondSectionIcon,SecondSectionBox
 
 
 class EditpageAdmin(admin.ModelAdmin):
@@ -8,3 +8,6 @@ class EditpageAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Profile)
 admin.site.register(Editpage, EditpageAdmin)
+admin.site.register(SecondSection)
+admin.site.register(SecondSectionIcon)
+admin.site.register(SecondSectionBox)

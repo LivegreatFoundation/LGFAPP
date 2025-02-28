@@ -94,13 +94,14 @@ DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'neondb',
     'USER': 'neondb_owner',
-    'PASSWORD': '4MUPmrWS7xwV',
-    'HOST': 'ep-cool-dew-a4fl1wt4.us-east-1.aws.neon.tech',
+    'PASSWORD': 'npg_aILjqv2w8ZuJ',
+    'HOST': 'ep-shrill-sound-a2kdo650-pooler.eu-central-1.aws.neon.tech',
     'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
   }
 
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

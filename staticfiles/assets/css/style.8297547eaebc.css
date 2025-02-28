@@ -125,12 +125,13 @@ li {
 
 .block-title h4 {
     position: relative;
+
     font-size: 50px;
     color: var(--thm-primary);
-    line-height: 80px;
+    line-height: 60px;
     display: inline-block;
     font-family: var(--thm-font-shadows);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .block-title h2 {
@@ -1342,8 +1343,8 @@ li {
     position: relative;
     display: block;
     text-align: center;
-    padding-top: 107px;
-    padding-bottom: 210px;
+    padding-top: 240px;
+    padding-bottom: 250px;
 }
 
 .main-slider p {
@@ -3872,7 +3873,7 @@ li {
 }
 
 .you-can-help__give-text-box p {
-    font-size: 30px;
+    font-size: 20px;
     color: var(--thm-black);
     font-family: var(--thm-font-shadows);
     margin: 0;
@@ -3882,15 +3883,15 @@ li {
     position: absolute;
     top: -30px;
     right: -30px;
-    height: 106px;
-    width: 106px;
+    height: 86px;
+    width: 86px;
     background: var(--thm-primary);
     border-radius: 50%;
     color: #ffffff;
-    font-size: 55px;
+    font-size: 25px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
 }
 
 /*--------------------------------------------------------------

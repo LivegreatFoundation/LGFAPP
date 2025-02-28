@@ -9,6 +9,7 @@ from shortuuid.django_fields import ShortUUIDField
 from pyuploadcare.dj.models import ImageField
 from ckeditor.fields import RichTextField
 
+
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -45,6 +46,7 @@ class Editpage(models.Model):
     section_name = models.CharField(max_length=100, choices=SECTION_CHOICES, unique=True)
     heading = RichTextField()
     content = RichTextField() 
+    slider_image = ImageField(blank=True, manual_crop="")
     
 
     def __str__(self):
@@ -71,4 +73,51 @@ class MainProgrames(models.Model):
     def __str__(self):
         return self.get_section_name_display()
     
-    
+    from ckeditor.fields import RichTextField  # Make sure this import is at the top
+
+class SecondSection(models.Model):
+    subtitle = RichTextField()  # Changed to RichTextField
+    title = RichTextField()     # Changed to RichTextField
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return strip_tags(self.subtitle)  # Using strip_tags for clean string representation
+
+    class Meta:
+        verbose_name = "Second Section"
+        verbose_name_plural = "Second Sections"
+
+class SecondSectionIcon(models.Model):
+    ICON_CHOICES = [
+        ('icon-vegetable', 'Food Icon'),
+        ('icon-water-1', 'Water Icon'),
+        ('icon-stethoscope', 'Medical Icon'),
+        # Add more icon choices as needed
+    ]
+
+    icon_class = models.CharField(max_length=50, choices=ICON_CHOICES)
+    text = RichTextField()      # Changed to RichTextField
+    order = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{strip_tags(self.text)} - {self.icon_class}"
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = "Second Section Icon"
+        verbose_name_plural = "Second Section Icons"
+
+class SecondSectionBox(models.Model):
+    text = RichTextField()      # Changed to RichTextField
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return strip_tags(self.text)
+
+    class Meta:
+        verbose_name = "Second Section Box"
+        verbose_name_plural = "Second Section Boxes"
