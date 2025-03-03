@@ -1373,7 +1373,7 @@ li {
     right: 0px;
     height: 18px;
     width: 322px;
-    background-image: url(../images/shapes/main-slider-line-shape.png);
+    background-image: url("../images/shapes/main-slider-line-shape.255da27b7203.png");
     background-repeat: no-repeat;
     content: "";
     z-index: -1;
@@ -4662,7 +4662,7 @@ li {
     position: relative;
     display: block;
     padding: 120px 0 120px;
-    background-image: url(../images/backgrounds/introduction-bg-1-1.png);
+    background-image: url("../images/backgrounds/introduction-bg-1-1.79843702ade8.png");
     background-repeat: no-repeat;
     background-position: top left;
 }
@@ -5028,7 +5028,7 @@ li {
 .welcome-two__counter {
     height: 191px;
     width: 191px;
-    background-image: url(../images/shapes/welcome-two-shape-1.png);
+    background-image: url("../images/shapes/welcome-two-shape-1.8a9800b80eb6.png");
     background-repeat: no-repeat;
     text-align: center;
     display: flex;

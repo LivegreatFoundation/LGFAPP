@@ -133,6 +133,7 @@ li {
     font-family: var(--thm-font-shadows);
     font-weight: 700;
 }
+
 .block-title h2 {
     font-size: 30px;
     line-height: 40px;
@@ -1342,7 +1343,7 @@ li {
     position: relative;
     display: block;
     text-align: center;
-    padding-top: 240px;
+    padding-top: 200px;
     padding-bottom: 250px;
 }
 
@@ -1527,7 +1528,7 @@ li {
     position: relative;
     display: block;
     text-align: left;
-    padding-top: 227px;
+    padding-top: 207px;
 }
 
 .main-slider-two p:before {
