@@ -5754,6 +5754,7 @@ li {
     display: block;
 }
 
+
 .make-donation__img:before {
     position: absolute;
     top: 40px;
@@ -5769,7 +5770,7 @@ li {
 }
 
 
-.make-donation__img img {
+.make-donation__img img  {
     width: 100%;
     border-radius: var(--thm-border-radius);
 }

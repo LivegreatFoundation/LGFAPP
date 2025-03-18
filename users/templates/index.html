@@ -24,11 +24,13 @@
                     "clickable": true
                 },
                 "autoplay": {
-                    "delay": 3000
+                    "delay": 5000
                 }}'>
+               
                 <div class="swiper-wrapper">
-                    <!-- Slide 1 -->
+                    <!-- Slide 1 --> 
                     <div class="swiper-slide">
+                        <br><br><br>
 <div class="image-layer" style="background-image: url('{% if hnew.slider_image %}{{ hnew.slider_image.cdn_url }}{% else %}{% static 'assets/images/main-slider/slider-2-1.jpg' %}{% endif %}');"></div>                       
                         <div class="container">
                             <div class="swiper-slide__inner">
@@ -51,6 +53,7 @@
         
                     <!-- Slide 2 -->
                     <div class="swiper-slide">
+                        <br><br><br>
                         <div class="image-layer" style="background-image: url('{% if hneww.slider_image %}{{ hneww.slider_image.cdn_url }}{% else %}{% static 'assets/images/main-slider/slider-2-1.jpg' %}{% endif %}');"></div>                      
                         <div class="container">
                             <div class="swiper-slide__inner">
@@ -73,6 +76,7 @@
         
                     <!-- Slide 3 -->
                     <div class="swiper-slide"> 
+                        <br><br><br>
                         <div class="image-layer" style="background-image: url('{% if hnewww.slider_image %}{{ hnewww.slider_image.cdn_url }}{% else %}{% static 'assets/images/main-slider/slider-2-1.jpg' %}{% endif %}');"></div>                        <div class="container">
                             <div class="swiper-slide__inner">
                                 <div class="row">
@@ -95,7 +99,16 @@
                 <div class="swiper-pagination" id="main-slider-pagination"></div>
             </div>
         </section>
-        <section  class="you-can-help" style="background-image: url('{% static 'assets/images/backgrounds/you_can_help_bg.jpg' %}');">
+
+
+
+        <!--Charity Activity Start-->
+
+
+      
+      
+        <!--Charity Activity End-->
+        <!-- <section  class="you-can-help">
             <div class="you-can-help-img">
                 <img src="{% static 'assets/images/resources/you_can_help_img.png' %}" alt="">
             </div>
@@ -173,219 +186,365 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Main Slider End -->
+        </section> -->
 
-        <!-- <section class="feature-one">
-            <div class="container">
-                <div class="feature-one__inner">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4">
-                            <div class="feature-one__single feature-one__single-first-item">
-                                <div class="feature-one__icon-wrap">
-                                    {% if Programme1 %}
-                                    <div class="feature-one__icon-text-box">
-                                        <h4 class=""> <strong>{{ Programme1.heading | safe }}</strong> </h4>
-                                    </div>
-                                </div>
-                                <p class="feature-one__icons-single-text">{{ Programme1.content | safe }}</p>
-                            </div>
-                            {% endif %}
-                        </div>
-                        <div class="col-xl-4 col-lg-4">
-                            <div class="feature-one__single feature-one__single-first-item">
-                                <div class="feature-one__icon-wrap">
-                                    {% if Programme2 %}
-                                    <div class="feature-one__icon-text-box">
-                                        <h4> <strong> {{ Programme2.heading | safe }} </strong> </h4>
-                                    </div>
-                                </div>
-                                <p class="feature-one__icons-single-text">{{ Programme2.content | safe }}</p>
-                            </div>
-                            {% endif %}
-                        </div>
-                        <div class="col-xl-4 col-lg-4">
-                            <div class="feature-one__single feature-one__single-first-item">
-                                <div class="feature-one__icon-wrap">
-                                    {% if Programme3 %}
-                                    <div class="feature-one__icon-text-box">
-                                        <h4> <strong> {{ Programme3.heading | safe }} </strong> </h4>
-                                    </div>
-                                </div>
-                                <p class="feature-one__icons-single-text">{{Programme3.content | safe }}</p>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-        <!-- <section class="welcome-one" style="background-image: url('{% static 'assets/images/backgrounds/welcome_one_bg.jpg' %}');">       
-                 <div class="container" style="margin-top: -200px;">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="make-donation-two__right">
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="make-donation-two__single-img">
-                                        <img src="{% static 'assets/images/resources/make-donation-two-img-1.jpg' %}" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="make-donation-two__single-img">
-                                        <img src="{% static 'assets/images/resources/make-donation-two-img-2.jpg' %}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="make-donation-two__right">
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="make-donation-two__single-img">
-                                        <img src="{% static 'assets/images/resources/make-donation-two-img-1.jpg' %}" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="make-donation-two__single-img">
-                                        <img src="{% static 'assets/images/resources/make-donation-two-img-2.jpg' %}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-              
-                </div>
-            </div>
-        </section> -->
-        <!--Give Helping Start-->
-      
-  <style>
-    .make-donation-two__left, .make-donation-two__right {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-  </style>
-  
-        <!--Charity Activity Start-->
-        <section  class="make-donation-two" style="background-image: url('{% static 'assets/images/backgrounds/news-two-bg.jpg' %}'); margin-top: -50px;" >
-            <div class="container">
-                <div class="row ">
-                    <div class="col-xl-12 col-lg-12">
-                        <div class="make-donation-two__left">
-                            <div class="block-title text-left">
-                               {% if about_us %}  
-                               <h4>
-                               Innovate, Educate, Transform                             </h4>
-                               <h1 class=""> {{ about_us.heading | safe }} </h1>
-                           {% else %}
-                               <h2 class="">Update Abot us heading  in Edit Pages</h2>
-                           {% endif %}
-                            </div>
-                            {% if about_us %}
-                            <p class="make-donation-two__text">{{ about_us.content | safe }}</p>
-                                {% else %}
-                                <p class="make-donation-two__text">Update about us content in Edit Pages </p>
-                                {% endif %}
-                         
-                        </div>
-                    </div>
-                    <!-- <div class="col-xl-3 col-lg-3">
-                        <div class="make-donation-two__right">
-                            <div class="row">
-                                <div class="">
-                                    <div class="make-donation-two__single-img">
-                                        <img src="{% static 'assets/images/resources/make-donation-two-img-1.jpg' %}" alt="">
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-        </section>
-       
+
         <!--Charity Activity End-->
-    <br><br><br><br>
-        <section class="make-donation">
-            <div class="make-donation-bg" style="background-image: url('{% static 'assets/images/backgrounds/make-donation-bg.png' %}');">
-            </div>
+        <section class="welcome-two">
+            <div class="welcome-two-hand" style="background-image: url(assets/images/backgrounds/welcome_two_hands.png)"></div>
             <div class="container">
                 <div class="row">
-                   
-                    <div class="col-xl-6">
-                        <div class="make-donation__left">
-                            <br><br><br><br>
-                            <div class="make-donation__bottom">
-                                <div class="block-title text-left">
-                                    <h4>Green Guardians of Nairobi</h4>
-                                </div>
-                                <p class="make-donation__text">By harnessing the power of visual art, we educate Kibera residents on proper waste management, protecting air and soil quality while championing a zero-waste vision. 
- At Live Great Foundation, we believe that collective effort brings change—one community, one innovative solution at a time.</p>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="make-donation__right">
-                            <div class="make-donation__img">
-                                <img src="{% static 'assets/images/resources/art.jpg' %}" alt="">
-                            </div>
-                        </div>
-                    </div>
-                  
-                </div>
-            </div>
-        </section>
-        <br><br><br>
-        <section class="make-donation-two"  style="margin-top: -120px;" >
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-8 col-lg-8">
-                        <div class="make-donation-two__left">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="welcome-two__left">
                             <div class="block-title text-left">
-                               {% if mission %}
-                               <h4>
-                               Our Mission
-                                   </h4>
-                               <h2 class="">{{ mission.heading | safe }}</h2>
-                               {% else %}
-                               <h2 class="">Update Mission heading (Edit Pages )</h2>
-                           {% endif %}
-                            </div>
-                            {% if mission %}
-                            <p class="make-donation-two__text">{{ mission.content | safe }}</p>
-                                {% else %}
-                                <p class="make-donation-two__text">Update Mission content in Edit Pages </p>
-                                {% endif %}
-                         
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4">
-                        <div class="make-donation-two__right">
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="make-donation-two__single-img">
-                                        <img src="{% static 'assets/images/resources/make-donation-two-img-1.jpg' %}" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="make-donation-two__single-img">
-                                        <img src="{% static 'assets/images/resources/make-donation-two-img-1.jpg' %}" alt="">
-                                    </div>
-                                </div>
+
+                                {% if second_section %}
                                
+                                <h4>{{ second_section.subtitle | safe }}</h4>
+                                <p class="welcome-two__text">{{ second_section.title | safe }}</p>
+                            {% else %}
+                                <h4>Green Guardians of Nairobi</h4>
+                                <h2>Changing our community, one innovative solution at a time.</h2>
+                            {% endif %}
+                            </div>
+                            <div class="welcome-two__btn">
+                                <a href="{% url 'users:aboutus' %}" class="thm-btn">Learn More</a>
                             </div>
                         </div>
                     </div>
-                  
-                
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="welcome-two__right">
+                            <div class="welcome-two__img">
+                                <img src="{% static 'assets/images/resources/welcome-two-img-1.jpg' %}" alt="">
+                                <div class="welcome-two__counter">
+                                    <h3>1,000+</h3>
+                                    <p>Trees<br> Planted</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
+
+
+<section class="mission-vision" style="margin-top: -350px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="block-title text-center">
+                    <h4>Our Mission</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3">
+                <div class="goal-item">
+                    <i class="fas fa-recycle"></i>
+                    <h4>Clean Kibera</h4>
+                    <p>Turning waste into opportunity through cutting-edge solutions.</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3">
+                <div class="goal-item">
+                    <i class="fas fa-seedling"></i>
+                    <h4>Sustainable Growth</h4>
+                    <p>Creating jobs and empowering communities for the long haul.</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3">
+                <div class="goal-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h4>Education & Empowerment</h4>
+                    <p>Inspiring kids and communities to lead on climate action.</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3">
+                <div class="goal-item">
+                    <i class="fas fa-apple-alt"></i>
+                    <h4>Nutritional Support for Sport</h4>
+                    <p>Fueling young athletes with healthy meals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<style>
+    .mission-vision {
+        padding: 120px 0;
+        background-color: #ffffff;
+    }
+    
+    .goal-item {
+        margin-bottom: 30px;
+        padding: 30px;
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    
+    .goal-item:hover {
+        transform: translateY(-10px);
+    }
+    
+    .goal-item i {
+        color: #00ae0f;
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+    
+    .goal-item h4 {
+        margin-bottom: 15px;
+        color: #333;
+        font-weight: 600;
+    }
+    
+    .goal-item p {
+        color: #666;
+        margin: 0;
+    }
+
+            .mission-vision {
+                padding: 120px 0;
+                background-color: #ffffff;
+            }
+            
+            .mission-box, .vision-box {
+                padding: 40px;
+                background: #fff;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            
+            .goal-item {
+                margin-bottom: 30px;
+                padding: 20px;
+                border-left: 4px solid #00ae0f;
+                background: #f9f9f9;
+            }
+            
+            .goal-item i {
+                color: #00ae0f;
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+            
+            .vision-box {
+                background: #00ae0f;
+                color: white;
+                position: relative;
+                height: 100%;
+                display: flex;
+                align-items: center;
+            }
+            
+            .what-we-do {
+                padding: 120px 0;
+            }
+            
+            .service-card {
+                padding: 30px;
+                text-align: center;
+                background: #fff;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+                margin-bottom: 30px;
+            }
+            
+            .service-card:hover {
+                transform: translateY(-10px);
+            }
+            
+            .service-icon {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 20px;
+                background: #15c8a0;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .service-icon i {
+                color: white;
+                font-size: 32px;
+            }
+        </style>
+       
+
+       <section class="make-donation-two">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6">
+                    <div class="make-donation-two__left">
+                        <div class="block-title text-left">
+                            <h4>What We Do</h4>
+                            <h2>Transforming Communities Through Action</h2>
+                        </div>
+                        <div class="what-we-do__list">
+                            <div class="what-we-do__item">
+                                <h4><i class="fas fa-trash-restore-alt"></i> Waste Management</h4>
+                                <p>We're tackling waste head-on with collection services, segregation, and plastic resale—turning trash into treasure and paving the way for a circular economy.</p>
+                            </div>
+                            <div class="what-we-do__item">
+                                <h4><i class="fas fa-chalkboard-teacher"></i> Community & Youth Education</h4>
+                                <p>Through school programs, clean-ups, and workshops, we're raising climate literacy and empowering the next generation of "Climate Champions" to lead change.</p>
+                            </div>
+                            <div class="what-we-do__item">
+                                <h4><i class="fas fa-chart-line"></i> Jobs & Economic Growth</h4>
+                                <p>We're creating weekly wage opportunities, especially for youth, to spark local economic growth and build stronger communities.</p>
+                            </div>
+                            <div class="what-we-do__item">
+                                <h4><i class="fas fa-utensils"></i> Nutrition for Young Athletes</h4>
+                                <p>We support local sports teams by providing nutritious meals after weekend practices, helping kids stay strong and active.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="make-donation-two__right">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="make-donation-two__single-img">
+                                    <img src="{% static 'assets/images/resources/waste-management.jpg' %}" alt="Waste Management">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="make-donation-two__single-img">
+                                    <img src="{% static 'assets/images/resources/community-education.jpg' %}" alt="Community Education">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <style>
+    .what-we-do__list {
+        margin-top: 30px;
+    }
+    
+    .what-we-do__item {
+        margin-bottom: 25px;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .what-we-do__item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .what-we-do__item h4 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    
+    .what-we-do__item h4 i {
+        color: #00ae0f;
+        margin-right: 10px;
+        font-size: 20px;
+    }
+    
+    .what-we-do__item p {
+        color: #666;
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    </style>
+        
+    
+        
+
+        
+
+<section class="you-can-help">
+    <div class="container " style="margin-top: 45px;">
+        <div class="row  "> 
+            <div class="col-xl-8 col-lg-8">
+                <div class="you-can-help__left">
+                    <div class="block-title text-left">
+                        {% if second_section %}
+                            <h4>{{ second_section.subtitle | safe }}</h4>
+                            <p>{{ second_section.title | safe }}</p>
+                        {% else %}
+                            <h4>Green Guardians of Nairobi</h4>
+                            <h2>Changing our community, one innovative solution at a time.</h2>
+                        {% endif %}
+                    </div>
+                    <div class="you-can-help__three-icon">
+                        <ul class="list-unstyled">
+                            {% if second_section_icons %}
+                                {% for icon in second_section_icons %}
+                                <li>
+                                    <div class="icon-box">
+                                        <span class="{{ icon.icon_class }}"></span>
+                                    </div>
+                                    <div class="text">
+                                        <p>{{ icon.text | safe }}</p>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            {% else %}
+                                <li>
+                                    <div class="icon-box">
+                                        <span class="icon-vegetable"></span>
+                                    </div>
+                                    <div class="text">
+                                        <p>Food</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon-box">
+                                        <span class="icon-water-1"></span>
+                                    </div>
+                                    <div class="text">
+                                        <p>Water</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon-box">
+                                        <span class="icon-stethoscope"></span>
+                                    </div>
+                                    <div class="text">
+                                        <p>Medical</p>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            
+            </div>
+          
+            <div class="col-xl-4 col-lg-4">
+                
+             
+                    <div class="">
+                        <img src="{% static 'assets/images/resources/you_can_help_img.png' %}" alt="" style="width: 200%; margin-top: -150px;margin-left: -200px; ">
+                    </div>
+          
+            </div>
+        </div>
+    </div>
+</section>
+
+  
         <section class="become-volunteer" style="margin-top: -160px;">
             <div class="container">
                 <div class="row">
