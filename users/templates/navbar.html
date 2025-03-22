@@ -30,10 +30,16 @@
                             
                             <li class="dropdown">
                                 <a href="">Programs<button class="dropdown-btn"></button></a>
-                                <ul>
+                                <ul style="min-width: 300px;">
+                                    <li><a href="{% url 'users:programs' %}#waste-management">Waste Management</a></li>
+                                    <li><a href="{% url 'users:programs' %}#youth-education">Community & Youth Education</a></li>
+                                    <li><a href="{% url 'users:programs' %}#economic-growth">Jobs & Economic Growth</a></li>
+                                    <li><a href="{% url 'users:programs' %}#nutrition">Nutrition for Young Athletes</a></li>
                                     <li><a href="{% url 'users:programs' %}">Goddess Care Initiative</a></li>
                                 </ul><!-- /.sub-menu -->
                             </li>
+                            
+
                             <li>
                                 <a href="{% url 'events:event_list' %}">Events</a>
                             </li>
