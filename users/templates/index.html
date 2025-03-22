@@ -191,7 +191,7 @@
 
         <!--Charity Activity End-->
         <section class="welcome-two">
-            <div class="welcome-two-hand" style="background-image: url(assets/images/backgrounds/welcome_two_hands.png)"></div>
+            <div class="welcome-two-hand" style="background-image: url('{% static 'assets/images/backgrounds/welcome_two_hands.png' %}')"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6">
@@ -207,8 +207,8 @@
                                 <h2>Changing our community, one innovative solution at a time.</h2>
                             {% endif %}
                             </div>
-                            <div class="welcome-two__btn">
-                                <a href="{% url 'users:aboutus' %}" class="thm-btn">Learn More</a>
+                            <div class="welcome-two__btn" style="margin-top: -20px;">
+                                <a href="{% url 'users:aboutus' %}" class="programs-btn" style="border-radius: 50px;">Learn More <i class="fas fa-arrow-right"></i> </a>
                             </div>
                         </div>
                     </div>
@@ -229,7 +229,7 @@
 
 
 
-<section class="mission-vision" style="margin-top: -350px;">
+<section class="mission-vision" style="margin-top: -380px;">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
@@ -379,7 +379,7 @@
         </style>
        
 
-       <section class="make-donation-two">
+       <section class="make-donation-two" style="margin-top: -80px;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
@@ -439,7 +439,7 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-12">
-                                <a href="#" class="programs-btn">View All Programs <i class="fas fa-arrow-right"></i></a>
+                                <a href="{% url 'users:programs' %}" class="programs-btn">View All Programs <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -832,7 +832,7 @@
                         {% if vision %}
                             <h2>{{ vision.heading | safe }}</h2>
                         {% else %}
-                            <h2>Building a Sustainable Future for Kibera</h2>
+                            <h2>Building a Sustainable Future</h2>
                         {% endif %}
                     </div>
                     <div class="vision-text">
@@ -860,7 +860,7 @@
             </div>
             <div class="col-xl-6 col-lg-6">
                 <div class="vision-image">
-                    <img src="{% static 'assets/images/resources/vision-main.jpg' %}" alt="Our Vision">
+                    <img src="{% static 'assets/images/resources/ourvision.jpg' %}" alt="Our Vision">
                     <div class="vision-shape"></div>
                     <div class="vision-years">
                         <span class="number">5</span>
@@ -1154,7 +1154,7 @@
             padding: 18px 35px;
             background: white;
             color: #00ae0f;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             border-radius: 50px;
             text-decoration: none;
