@@ -9,7 +9,7 @@ echo "Building the project JDA..."
 
 pip install -r requirements.txt
 
-# python render_migrate.py
+python render_migrate.py
 
 python manage.py collectstatic --noinput 
 
