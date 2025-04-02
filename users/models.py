@@ -43,10 +43,10 @@ class Editpage(models.Model):
 
     ]
 
-    section_name = models.CharField(max_length=100, choices=SECTION_CHOICES, unique=True)
-    heading = RichTextField()
-    content = RichTextField() 
-    slider_image = ImageField(blank=True, manual_crop="")
+    section_name = models.CharField(max_length=100, choices=SECTION_CHOICES, unique=True, blank=True)
+    heading = RichTextField(blank=True) 
+    content = RichTextField(blank=True)  
+    slider_image = ImageField(blank=True, manual_crop="") 
     
 
     def __str__(self):
