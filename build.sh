@@ -9,6 +9,9 @@ echo "Building the project JDA..."
 
 pip install -r requirements.txt
 
-#
+# python render_migrate.py
+
+python manage.py collectstatic --noinput 
+
 python manage.py makemigrations
-python manage.py migrate --fake-initial
+python manage.py migrate --noinput
