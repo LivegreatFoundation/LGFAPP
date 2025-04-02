@@ -53,14 +53,14 @@
                                                 </div>
                                                 <div class="news-one__content">
                                                     <ul class="list-unstyled news-one__meta">
-                                                        <li><a href="#"><i class="far fa-user-circle"></i> {{p.user}}</a></li> <!-- Assuming you have an author field -->
+                                                        <li><a href="#"><i class="far fa-user-circle"></i>  by {{p.Author}}</a></li> <!-- Assuming you have an author field -->
                                                         <li><span>/</span></li>
                                                         <li><a href="#"><i class="far fa-comments"></i> {{ p.comments.count }} Comments</a></li> <!-- Adjust according to your comment field -->
                                                     </ul>
                                                     <div class="news-one__title">
                                                         <h3><a href="{% url 'blogapp:blog-detail' p.pid %}">{{p.title|truncatechars:110}}</a></h3> <!-- Adjust to your actual field -->
                                                     </div>
-                                                    <a href="{% url 'blogapp:blog-detail' p.pid %}" class="thm-btn news-one__btn">More</a>
+                                                    <a href="{% url 'blogapp:blog-detail' p.pid %}" class="thm-btn news-one__btn">Read Full story <i class="far fa-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>

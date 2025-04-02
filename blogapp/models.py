@@ -16,6 +16,7 @@ BLOG_PUBLISH_STATUS = (
 )
 
 
+
 class Category(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
@@ -33,9 +34,9 @@ class Category(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     Author = models.CharField(max_length=1000)
-    image = ImageField(blank=True, null=True, manual_crop="4:4",)
+    image = ImageField(blank=True, null=True, manual_crop="16:9")
     title = models.CharField(max_length=1000)
-    content = RichTextField(max_length=50)
+    content = RichTextField(max_length=10000)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     tags = TaggableManager()
     status = models.CharField(choices=BLOG_PUBLISH_STATUS, max_length=100, default="in_review")

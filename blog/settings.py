@@ -124,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'  # This is the correct time zone for East Africa (UTC+3)
 
 USE_I18N = True
 
@@ -136,7 +136,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-import os
+
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
@@ -160,8 +160,62 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"#
 UPLOADCARE = {
   # Don’t forget to set real keys when it gets real :)
 
-  'pub_key': 'f914008525312051b54c',
-  'secret': '06f605e3fa31437f2a51',
+  'pub_key': '18ad19435c41077ca842',
+  'secret': 'b27f8995d2e4b66cbf02',
 }
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+JET_DEFAULT_THEME = 'green'
+JET_THEMES = [
+    {
+        'theme': 'default',
+        'color': '#47bac1',
+        'title': 'Default'
+    },
+    {
+        'theme': 'green',
+        'color': '#44b78b',
+        'title': 'Green'
+    },
+    {
+        'theme': 'light-green',
+        'color': '#2faa60',
+        'title': 'Light Green'
+    },
+    {
+        'theme': 'light-violet',
+        'color': '#a464c4',
+        'title': 'Light Violet'
+    },
+    {
+        'theme': 'light-blue',
+        'color': '#5EADDE',
+        'title': 'Light Blue'
+    },
+    {
+        'theme': 'light-gray',
+        'color': '#222',
+        'title': 'Light Gray'
+    }
+]
+
+# Jet Side Menu Settings
+JET_SIDE_MENU_COMPACT = True
+
+JET_SIDE_MENU_ITEMS = [
+    {'label': 'Blog Management', 'items': [
+        {'name': 'blogapp.post', 'label': 'Posts'},
+        {'name': 'blogapp.category', 'label': 'Categories'},
+        {'name': 'blogapp.comment', 'label': 'Comments'},
+        {'name': 'blogapp.staticcontent', 'label': 'Static Content'},
+    ]},
+    {'label': 'Users', 'items': [
+        {'name': 'auth.user'},
+        {'name': 'auth.group'},
+    ]},
+]
+
+# Additional Jet settings
+JET_CHANGE_FORM_SIBLING_LINKS = True
+JET_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultIndexDashboard'
