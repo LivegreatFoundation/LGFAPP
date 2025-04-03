@@ -92,10 +92,10 @@ WHITENOISE_MANIFEST_STRICT = False
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'LGFWEBAPP',
-    'USER': 'LGFWEBAPP_owner',
-    'PASSWORD': 'npg_5xlCNfho2Fkc',
-    'HOST': 'ep-still-resonance-a5eomvb4-pooler.us-east-2.aws.neon.tech',
+    'NAME': 'PRODDB',
+    'USER': 'PRODDB_owner',
+    'PASSWORD': 'npg_5cJkud8MeiPf',
+    'HOST': 'ep-broad-math-abu5gxxe-pooler.eu-west-2.aws.neon.tech',
     'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
   }
