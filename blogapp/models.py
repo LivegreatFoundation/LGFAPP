@@ -7,9 +7,6 @@ from django.utils.html import strip_tags
 from shortuuid.django_fields import ShortUUIDField
 from pyuploadcare.dj.models import ImageField
 from ckeditor.fields import RichTextField
-from django.contrib.auth import get_user_model
-
-
 
 
 BLOG_PUBLISH_STATUS = (
@@ -35,7 +32,7 @@ class Category(models.Model):
         
     
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True ,default=1)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True )
     Author = models.CharField(max_length=1000)
     image = ImageField(blank=True, null=True, manual_crop="16:9")
     title = models.CharField(max_length=1000)
@@ -53,7 +50,6 @@ class Post(models.Model):
         verbose_name = "Posts"
         verbose_name_plural = "Posts "
     
-    
     def __str__(self):
         return self.title[0:10]
 
@@ -65,13 +61,6 @@ class Post(models.Model):
         total_words = len((string).split())
 
         return round(total_words / 200)
-    User = get_user_model()
-
-    def get_default_user():
-        return User.objects.first().id  # Make sure at least one user exists
-
-class Bookmark(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
@@ -101,5 +90,3 @@ class StaticContent(models.Model):
 
     def __str__(self):
         return self.get_section_name_display()
-    
-
