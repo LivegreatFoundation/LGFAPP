@@ -202,11 +202,13 @@
                                
                                 <h4>{{ second_section.subtitle | safe }}</h4>
                                 <p class="welcome-two__text">{{ second_section.title | safe }}</p>
+                                
                             {% else %}
                                 <h4>Green Guardians of Nairobi</h4>
                                 <h2>Changing our community, one innovative solution at a time.</h2>
                             {% endif %}
                             </div>
+                          
                             <div class="welcome-two__btn" style="margin-top: -20px;">
                                 <a href="{% url 'users:aboutus' %}" class="programs-btn" style="border-radius: 50px;">Learn More <i class="fas fa-arrow-right"></i> </a>
                             </div>

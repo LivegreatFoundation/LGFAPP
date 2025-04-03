@@ -92,10 +92,10 @@ WHITENOISE_MANIFEST_STRICT = False
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'neondb',
-    'USER': 'neondb_owner',
-    'PASSWORD': 'npg_aILjqv2w8ZuJ',
-    'HOST': 'ep-shrill-sound-a2kdo650-pooler.eu-central-1.aws.neon.tech',
+    'NAME': 'LGFWEBAPP',
+    'USER': 'LGFWEBAPP_owner',
+    'PASSWORD': 'npg_5xlCNfho2Fkc',
+    'HOST': 'ep-still-resonance-a5eomvb4-pooler.us-east-2.aws.neon.tech',
     'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
   }
