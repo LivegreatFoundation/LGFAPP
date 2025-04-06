@@ -33,28 +33,32 @@ def blogList(request):
 
 def blogDetail(request, pid):
     post = Post.objects.get(status="published", pid=pid)
-    comments = Comment.objects.filter(post=post, active=True)    
+    comments = Comment.objects.filter(post=post, active=True)  # Changed variable name to comments
     blogs = Post.objects.filter(status="published").order_by("-id")[:10]
     related_blogs = Post.objects.filter(category=post.category).order_by("-id")[:12]
 
     post.views += 1
     post.save()
 
-
     if request.method == "POST":
         full_name = request.POST.get("full_name")
-        comment = request.POST.get("comment")
+        comment_text = request.POST.get("comment")  # Changed variable name to avoid conflict
         email = request.POST.get("email")
 
-        Comment.objects.create(full_name=full_name, email=email ,comment=comment, post=post)
-        messages.success(request, f"Hey {full_name}, your comment have posted.")
+        Comment.objects.create(
+            full_name=full_name, 
+            email=email,
+            comment=comment_text, 
+            post=post
+        )
+        messages.success(request, f"Hey {full_name}, your comment has been posted.")
 
     context = {
         "post": post,
-        "comment": comment,
+        "comments": comments,  # Changed from comment to comments
         "blogs": blogs,
-        "related_blogs":related_blogs,
-        "comment_count": comments.count()
+        "related_blogs": related_blogs,
+        "comment_count": comments.count()  # Added explicit comment count
     }
     return render(request, 'blogdetail.html', context)
     
