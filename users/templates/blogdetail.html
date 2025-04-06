@@ -44,8 +44,7 @@
                                
                                 <li><a href="#"><i class="far fa-user-circle"></i> {{post.category.title}}</a></li>
                                 <li><a href="#"><i class="far fa-user-circle"></i> Posted by {{post.user}}</a></li>
-                                <li><a href="#"><i class="far fa-comments"></i> Comments ( {% if comment and comment|length > 0 %}{{ comment.count }}{% else %}0{% endif %} )</a></li>                                    <li><a href="#"><i class="far fa-eye"></i> Views ({{post.views}} )</a>
-                                </li>
+                                <li><a href="#"><i class="far fa-comments"></i> Comments ({{ comment_count }})</a></li>                                </li>
                             </ul>
                             <h3 class="news-details__title">
 {{  post.title}}                        
@@ -65,22 +64,21 @@
 
                         <div class="comments-area mb-60 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                             <h4 class="comments-title mb-40">Comments</h4>
-                            {% if comment %}
+                            {% if comments %}
                             <ul class="comments-list">
-                                {% for c in comment %}
-                                <li>
+                                {% for comment in comments %}                                <li>
                                     <div class="comment">
                                         <div class="news-details__content">
                             
                                             <ul class="list-unstyled news-details__meta">
                                                
-                                                <li><a href="#"><i class="far fa-user-circle"></i> {{c.full_name|title}}</a></li>
+                                                <li><a href="#"><i class="far fa-user-circle"></i> {{comment.full_name|title}}</a></li>
                                               
-                                                    <li><a href="#"><i class="far fa-eye"></i> {{c.date|date:"d M, Y"}}</a>
+                                                    <li><a href="#"><i class="far fa-eye"></i> {{comment.date|date:"d M, Y"}}</a>
                                                 </li>
                                             </ul>
-                                            <p>{{c.comment|safe}}</p>
-                                        </div>
+                                            <p>{{comment.comment|safe}}</p>
+                                                                                </div>
                                     
                                     </div>
                                    

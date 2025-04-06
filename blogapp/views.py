@@ -33,7 +33,7 @@ def blogList(request):
 
 def blogDetail(request, pid):
     post = Post.objects.get(status="published", pid=pid)
-    comment = Comment.objects.filter(post=post, active=True)
+    comments = Comment.objects.filter(post=post, active=True)    
     blogs = Post.objects.filter(status="published").order_by("-id")[:10]
     related_blogs = Post.objects.filter(category=post.category).order_by("-id")[:12]
 
@@ -53,7 +53,8 @@ def blogDetail(request, pid):
         "post": post,
         "comment": comment,
         "blogs": blogs,
-        "related_blogs":related_blogs
+        "related_blogs":related_blogs,
+        "comment_count": comments.count()
     }
     return render(request, 'blogdetail.html', context)
     
