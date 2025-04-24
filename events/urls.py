@@ -7,4 +7,5 @@ app_name = 'events'
 urlpatterns = [
     path('', event_list, name='event_list'),
     path('<int:id>/', event_detail, name='event_detail'),  # Ensure this exists
+    
 ]

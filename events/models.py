@@ -11,6 +11,14 @@ from pyuploadcare.dj.models import ImageField
 from ckeditor.fields import RichTextField
 from django.core.validators import URLValidator
 
+class EventCategory(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+
 class Event(models.Model):
     EVENT_TYPES = (
         ('PHYSICAL', 'Physical Event'),
@@ -23,22 +31,21 @@ class Event(models.Model):
     location = models.CharField(max_length=200, blank=True, null=True)  # For physical events
     online_url = models.URLField(max_length=500, blank=True, null=True, validators=[URLValidator()])  # For online events
     image = ImageField(blank=True, null=True, manual_crop="4:4",)
+    category = models.ForeignKey(EventCategory, on_delete=models.SET_NULL, null=True, blank=True)  # Add this field
     created_at = models.DateTimeField(auto_now_add=True)
     tags = TaggableManager()
     featured = models.BooleanField(default=False)
     content = RichTextField()
+    views = models.PositiveIntegerField(default=0)  # Add this line if not already present
 
     class Meta:
-        verbose_name = "Events"
-        verbose_name_plural = "Events "
-    
+            verbose_name = "Events"
+            verbose_name_plural = "Events"
+            ordering = ['-date']
+
     def __str__(self):
-        return self.title[0:10]
+        return self.title
 
-    class Meta:
-        ordering = ['-date']
-
-        
     def clean(self):
         super().clean()
         if self.event_type == 'PHYSICAL' and not self.location:
@@ -52,13 +59,7 @@ class Event(models.Model):
         return self.location
     
 
-class EventCategory(models.Model):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
-    active = models.BooleanField(default=True)
 
-    def __str__(self):
-        return self.name
 
 class EventComment(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='eventcomments')
@@ -73,4 +74,19 @@ class EventComment(models.Model):
 
     def __str__(self):
         return self.comment[0:20]
+    
+# Add this new model
+class EventAttendee(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='attendees')
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    registered_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-registered_at']
+        unique_together = ['event', 'email']  # Prevent duplicate registrations
+
+    def __str__(self):
+        return f"{self.name} - {self.event.title}"
 

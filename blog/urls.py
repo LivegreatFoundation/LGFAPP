@@ -22,7 +22,8 @@ from graphene_django.views import GraphQLView
 from users import views as user_views
 
 urlpatterns = [
-    path('jet/', include('jet.urls', 'jet')),  # Django Jet URLS
+    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     path('admin/', admin.site.urls),
     path('graphql/', GraphQLView.as_view(graphiql=True)),
     path('register/', user_views.register, name='register'),
