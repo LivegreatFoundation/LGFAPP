@@ -1,0 +1,40 @@
+{% extends 'basemain.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Ebooks Hero Section -->
+<section class="ebooks-hero" style="margin-top: 130px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="ebooks-hero__content">
+                    <h1>Our eBooks</h1>
+                    <p class="lead">Explore our collection of educational resources and publications</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ebooks Content Section -->
+<section class="ebooks-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ebooks-content__main">
+                    <h2>LGF Book: GREENSTAR KADOGO with zerowaste kenya</h2>
+                    <p>Explore our latest publication on sustainable practices and environmental conservation.</p>
+                    
+                    <!-- Embedded eBook -->
+                    <div class="ebook-embed-container">
+                        <a href="https://online.flippingbook.com/view/909808779/" class="fbo-embed" data-fbo-id="d6042ea37e" data-fbo-ratio="3:2" data-fbo-lightbox="yes" data-fbo-width="100%" data-fbo-height="auto" data-fbo-version="1" style="max-width: 100%">LGF Book MAIN (GREENSTAR KADOGO) with zerowaste kenya</a>
+                        <script async defer src="https://online.flippingbook.com/EmbedScriptUrl.aspx?m=redir&hid=909808779"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'footer.html' %}
+{% endblock %}

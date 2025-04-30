@@ -1,6 +1,6 @@
 from django.urls import path
 from blogapp import views
-from . import views 
+from . import views
 
 
 app_name = 'users'
@@ -11,7 +11,7 @@ urlpatterns = [
     path('programs/', views.programs, name='programs'),
     path('ourteam/', views.ourteam, name='ourteam'),
     path('contactus/', views.contactus, name='contactus'),
-
+    path('ebooks/', views.ebooks, name='ebooks'),
 
 ]
 

@@ -47,8 +47,8 @@ def home(request):
         'second_section': second_section ,
         'second_section_icons': second_section_icons,
         'second_section_box': second_section_box,
-        
-        
+
+
     }
 
     return render(request, 'index.html', content)
@@ -61,9 +61,9 @@ def aboutus(request):
         'volunteer': volunteer,
         'footer': footer,
         'aboutUs': aboutUs,
-        
+
     }
-    
+
     return render(request, 'aboutus.html', content)
 
 def programs(request):
@@ -77,7 +77,7 @@ def programs(request):
         'footer': footer,
         'reach': reach,
         'volunteer': volunteer,
-       
+
     }
     return render(request, 'programs.html', content)
 
@@ -88,20 +88,31 @@ def ourteam(request):
     team2 = Editpage.objects.filter(section_name='team2').first()
     team3 = Editpage.objects.filter(section_name='team3').first()
     content = {
-       
+
         'volunteer': volunteer,
         'footer': footer,
         'team1': team1,
         'team2': team2,
         'team3': team3,
-     
+
     }
-    
+
     return render(request, 'ourteam.html', content)
 
 def contactus(request):
-    
+
     return render(request, 'contactus.html')
+
+def ebooks(request):
+    footer = Editpage.objects.filter(section_name='footer').first()
+    volunteer = Editpage.objects.filter(section_name='Volunteer').first()
+
+    content = {
+        'footer': footer,
+        'volunteer': volunteer,
+    }
+
+    return render(request, 'ebooks.html', content)
 
 # Create your views here.
 def register(request):
