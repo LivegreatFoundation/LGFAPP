@@ -22,17 +22,15 @@ from graphene_django.views import GraphQLView
 from users import views as user_views
 
 urlpatterns = [
-    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     path('admin/', admin.site.urls),
     path('graphql/', GraphQLView.as_view(graphiql=True)),
     path('register/', user_views.register, name='register'),
     path('login/', user_views.login, name='login'),
     path('logout/', user_views.logout, name='logout'),
-    path('', include('users.urls')), 
+    path('', include('users.urls')),
     path('blogs/', include('blogapp.urls')),
     path('events/', include('events.urls')),
-  
+
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

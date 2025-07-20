@@ -8,7 +8,7 @@ from html import unescape
 from django.utils.html import strip_tags
 from shortuuid.django_fields import ShortUUIDField
 from pyuploadcare.dj.models import ImageField
-from ckeditor.fields import RichTextField
+from django_prose_editor.fields import ProseEditorField
 from django.core.validators import URLValidator
 
 class EventCategory(models.Model):
@@ -35,7 +35,7 @@ class Event(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     tags = TaggableManager()
     featured = models.BooleanField(default=False)
-    content = RichTextField()
+    content = ProseEditorField()
     views = models.PositiveIntegerField(default=0)  # Add this line if not already present
 
     class Meta:

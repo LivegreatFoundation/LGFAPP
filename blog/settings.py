@@ -34,22 +34,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Application definition
 
 INSTALLED_APPS = [
-    'jet',
-    'jet.dashboard',
-    'graphene_django',
-    'users.apps.UsersConfig',
-    'blogapp',
-    'events',
+    'unfold',
+    'unfold.contrib.filters',
+    'unfold.contrib.forms',
+    'unfold.contrib.import_export',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor',
+    'graphene_django',
+    'users.apps.UsersConfig',
+    'blogapp',
+    'events',
+    'notifications',
+    'django_prose_editor',
     'taggit',
     'import_export',
-    'ckeditor_uploader',
 ]
 
 
@@ -91,16 +93,23 @@ WHITENOISE_MANIFEST_STRICT = False
 
 
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'PRODDB',
-    'USER': 'PRODDB_owner',
-    'PASSWORD': 'npg_5cJkud8MeiPf',
-    'HOST': 'ep-broad-math-abu5gxxe-pooler.eu-west-2.aws.neon.tech',
-    'PORT': '5432',
-    'OPTIONS': {'sslmode': 'require'},
-  }
-
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.rhphjdabjfllajcwrbra',
+        'PASSWORD': 'LGFweb2025!keke',
+        'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
+        'PORT': '6543',
+        'OPTIONS': {
+            'sslmode': 'require',
+            # Supabase-specific optimizations
+            'connect_timeout': 10,
+            'options': '-c default_transaction_isolation=read_committed'
+        },
+        # Connection pooling settings for Supabase
+        'CONN_MAX_AGE': 600,  # 10 minutes
+        'CONN_HEALTH_CHECKS': True,
+    }
 }
 
 
@@ -165,58 +174,78 @@ UPLOADCARE = {
   'secret': 'b27f8995d2e4b66cbf02',
 }
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
+# Django Unfold Configuration
+UNFOLD = {
+    "SITE_TITLE": "Live Great Foundation Admin",
+    "SITE_HEADER": "Live Great Foundation",
+    "SITE_URL": "/",
+    "SITE_SYMBOL": "speed",  # symbol from icon set
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": True,
+    "COLORS": {
+        "primary": {
+            "50": "250 245 255",
+            "100": "243 232 255",
+            "200": "233 213 255",
+            "300": "196 181 253",
+            "400": "147 51 234",
+            "500": "124 58 237",
+            "600": "109 40 217",
+            "700": "91 33 182",
+            "800": "76 29 149",
+            "900": "59 7 100",
+            "950": "35 25 74"
+        },
+    },
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": True,
+    },
+}
 
-JET_DEFAULT_THEME = 'green'
-JET_THEMES = [
-    {
-        'theme': 'default',
-        'color': '#47bac1',
-        'title': 'Default'
-    },
-    {
-        'theme': 'green',
-        'color': '#44b78b',
-        'title': 'Green'
-    },
-    {
-        'theme': 'light-green',
-        'color': '#2faa60',
-        'title': 'Light Green'
-    },
-    {
-        'theme': 'light-violet',
-        'color': '#a464c4',
-        'title': 'Light Violet'
-    },
-    {
-        'theme': 'light-blue',
-        'color': '#5EADDE',
-        'title': 'Light Blue'
-    },
-    {
-        'theme': 'light-gray',
-        'color': '#222',
-        'title': 'Light Gray'
-    }
-]
 
-# Jet Side Menu Settings
-JET_SIDE_MENU_COMPACT = True
 
-JET_SIDE_MENU_ITEMS = [
-    {'label': 'Blog Management', 'items': [
-        {'name': 'blogapp.post', 'label': 'Posts'},
-        {'name': 'blogapp.category', 'label': 'Categories'},
-        {'name': 'blogapp.comment', 'label': 'Comments'},
-        {'name': 'blogapp.staticcontent', 'label': 'Static Content'},
-    ]},
-    {'label': 'Users', 'items': [
-        {'name': 'auth.user'},
-        {'name': 'auth.group'},
-    ]},
-]
+# Django Prose Editor Configuration
+PROSE_EDITOR = {
+    'toolbar': [
+        'bold', 'italic', 'underline', 'strikethrough',
+        '|', 'heading1', 'heading2', 'heading3',
+        '|', 'bulletList', 'orderedList',
+        '|', 'link', 'image',
+        '|', 'blockquote', 'codeBlock',
+        '|', 'undo', 'redo'
+    ],
+    'types': [
+        {
+            'key': 'default',
+            'toolbar': [
+                'bold', 'italic', 'underline',
+                '|', 'heading1', 'heading2', 'heading3',
+                '|', 'bulletList', 'orderedList',
+                '|', 'link', 'image',
+                '|', 'blockquote'
+            ]
+        }
+    ]
+}
 
-# Additional Jet settings
-JET_CHANGE_FORM_SIBLING_LINKS = True
-JET_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultIndexDashboard'
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For testing
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # For production
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_TIMEOUT = 60
+EMAIL_HOST_USER = 'dedeexpeditions@gmail.com'
+EMAIL_HOST_PASSWORD = 'roqu frlt wvof rqxk'
+DEFAULT_FROM_EMAIL = 'Live Great Foundation Technical Team <dedeexpeditions@gmail.com>'
+
+# SSL Configuration for email
+import ssl
+EMAIL_SSL_CERTFILE = None
+EMAIL_SSL_KEYFILE = None
+
+# Email Notification Settings
+LGF_ADMIN_EMAIL = 'info@livegreatfoundation.org'
+LGF_NOTIFICATION_ENABLED = True

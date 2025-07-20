@@ -1,8 +1,9 @@
 from django.contrib import admin
 from . models import Profile,Editpage,SecondSection,SecondSectionIcon,SecondSectionBox
+from unfold.admin import ModelAdmin
 
 
-class EditpageAdmin(admin.ModelAdmin):
+class EditpageAdmin(ModelAdmin):
     list_display = ('section_name', 'content')  # Display section name and content in the admin list
     search_fields = ['section_name']  # Allow searching by section name for easier management
 # Register your models here.

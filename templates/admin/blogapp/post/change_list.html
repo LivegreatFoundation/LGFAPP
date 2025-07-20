@@ -1,0 +1,164 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block content_title %}
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+        <h1>{{ title }}</h1>
+        <div class="import-export-buttons">
+            {% if template_download_url %}
+                <a href="{{ template_download_url }}"
+                   class="btn btn-primary template-download-btn"
+                   title="Download Excel template for bulk import">
+                    📥 Download Template
+                </a>
+            {% endif %}
+            <a href="{% url 'admin:blogapp_post_import' %}"
+               class="btn btn-success import-btn"
+               title="Import multiple posts from Excel">
+                📤 Import Posts
+            </a>
+            <a href="{% url 'admin:blogapp_post_export' %}"
+               class="btn btn-info export-btn"
+               title="Export existing posts to Excel">
+                📊 Export Posts
+            </a>
+            {% if has_add_permission %}
+                <a href="{% url cl.opts|admin_urlname:'add' %}{% if is_popup %}?{{ is_popup_var }}=1{% endif %}"
+                   class="btn btn-secondary add-btn"
+                   title="Add a single new post">
+                    ➕ Add {{ cl.opts.verbose_name }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        .import-template-info {
+            background-color: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .import-template-info h4 {
+            color: #0c5460;
+            margin-top: 0;
+        }
+        .import-template-info ul {
+            margin-bottom: 0;
+        }
+        .import-export-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 6px;
+            transition: all 0.15s ease-in-out;
+            text-decoration: none;
+            cursor: pointer;
+            min-width: 140px;
+        }
+
+        .btn:hover {
+            text-decoration: none;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #366092;
+            border-color: #366092;
+        }
+
+        .btn-primary:hover {
+            background-color: #2a4d73;
+            border-color: #2a4d73;
+            color: #fff;
+        }
+
+        .btn-success {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            color: #fff;
+        }
+
+        .btn-info {
+            color: #fff;
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .import-export-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn {
+                flex: 1;
+                min-width: auto;
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block result_list %}
+    {% if template_download_url %}
+        <div class="import-template-info">
+            <h4>🚀 AI-Assisted Bulk Import</h4>
+            <p><strong>Streamline your content creation workflow:</strong></p>
+            <ul>
+                <li>📥 <strong>Download the Excel template</strong> using the button above</li>
+                <li>🤖 <strong>Use AI tools</strong> (ChatGPT, Claude, etc.) to generate blog content in bulk</li>
+                <li>📝 <strong>Fill the template</strong> with AI-generated titles, content, categories, and tags</li>
+                <li>📤 <strong>Import via the Import button</strong> in the top-right actions menu</li>
+                <li>✅ <strong>All posts default to "published"</strong> status for immediate visibility</li>
+            </ul>
+            <p><em>💡 Tip: The template includes sample posts and data validation to ensure smooth imports!</em></p>
+        </div>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}

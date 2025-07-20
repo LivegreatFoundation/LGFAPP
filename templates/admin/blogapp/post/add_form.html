@@ -1,0 +1,238 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls static %}
+
+{% block content_title %}
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1>{{ title }}</h1>
+        <div class="import-export-buttons">
+            <a href="{% url 'admin:blogapp_post_download_template' %}" 
+               class="btn btn-primary template-download-btn" 
+               title="Download Excel template for bulk import">
+                📥 Download Template
+            </a>
+            <a href="{% url 'admin:blogapp_post_import' %}" 
+               class="btn btn-success import-btn"
+               title="Import multiple posts from Excel">
+                📤 Import Posts
+            </a>
+            <a href="{% url 'admin:blogapp_post_export' %}" 
+               class="btn btn-info export-btn"
+               title="Export existing posts to Excel">
+                📊 Export Posts
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        .import-export-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 6px;
+            transition: all 0.15s ease-in-out;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            text-decoration: none;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            color: #fff;
+            background-color: #366092;
+            border-color: #366092;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2a4d73;
+            border-color: #2a4d73;
+            color: #fff;
+        }
+        
+        .btn-success {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            color: #fff;
+        }
+        
+        .btn-info {
+            color: #fff;
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+            color: #fff;
+        }
+        
+        .bulk-import-info {
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%);
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .bulk-import-info h4 {
+            color: #0c5460;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .bulk-import-info p {
+            margin-bottom: 10px;
+            color: #495057;
+        }
+        
+        .bulk-import-info ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        
+        .bulk-import-info li {
+            margin-bottom: 5px;
+            color: #495057;
+        }
+        
+        .bulk-import-info .tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 15px;
+            font-style: italic;
+            color: #856404;
+        }
+        
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .workflow-step {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .workflow-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .workflow-step .step-number {
+            background-color: #366092;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .workflow-step h5 {
+            margin: 0 0 8px 0;
+            color: #366092;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .workflow-step p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 768px) {
+            .import-export-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .workflow-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block form_top %}
+    <div class="bulk-import-info">
+        <h4>🚀 Choose Your Content Creation Method</h4>
+        <p><strong>Individual Post Creation:</strong> Use the form below to create a single blog post with full editing capabilities.</p>
+        <p><strong>Bulk AI-Assisted Creation:</strong> Use our Excel template system for efficient bulk content creation with AI tools.</p>
+        
+        <div class="workflow-steps">
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <h5>📥 Download Template</h5>
+                <p>Get the Excel template with sample content and validation</p>
+            </div>
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <h5>🤖 Generate Content</h5>
+                <p>Use AI tools (ChatGPT, Claude) to create bulk content</p>
+            </div>
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <h5>📤 Import Posts</h5>
+                <p>Upload filled template to publish multiple posts instantly</p>
+            </div>
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <h5>📊 Export/Backup</h5>
+                <p>Export existing posts for backup or reference</p>
+            </div>
+        </div>
+        
+        <div class="tip">
+            💡 <strong>Pro Tip:</strong> The bulk import system can handle 20-50 posts efficiently and all posts default to "published" status for immediate visibility!
+        </div>
+    </div>
+    {{ block.super }}
+{% endblock %}
