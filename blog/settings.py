@@ -23,12 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jqx3e+sq2(sja+kuxr6(t5oijbe6(9jaf!1ieat0raf0nb&w=w'
+SECRET_KEY = config('SECRET_KEY', default='jqx3e+sq2(sja+kuxr6(t5oijbe6(9jaf!1ieat0raf0nb&w=w')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+# Production-ready ALLOWED_HOSTS configuration
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1').split(',')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Application definition
@@ -92,25 +93,20 @@ WHITENOISE_MANIFEST_STRICT = False
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 
+# Database configuration using environment variables
+DATABASE_URL = config('DATABASE_URL', default='postgresql://postgres.rhphjdabjfllajcwrbra:LGFweb2025!keke@aws-0-eu-central-1.pooler.supabase.com:6543/postgres')
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres.rhphjdabjfllajcwrbra',
-        'PASSWORD': 'LGFweb2025!keke',
-        'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
-        'PORT': '6543',
-        'OPTIONS': {
-            'sslmode': 'require',
-            # Supabase-specific optimizations
-            'connect_timeout': 10,
-            'options': '-c default_transaction_isolation=read_committed'
-        },
-        # Connection pooling settings for Supabase
-        'CONN_MAX_AGE': 600,  # 10 minutes
-        'CONN_HEALTH_CHECKS': True,
-    }
+    'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, conn_health_checks=True)
 }
+
+# Ensure SSL is required for production database connections
+if not DEBUG:
+    DATABASES['default']['OPTIONS'] = {
+        'sslmode': 'require',
+        'connect_timeout': 10,
+        'options': '-c default_transaction_isolation=read_committed'
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -229,23 +225,89 @@ PROSE_EDITOR = {
     ]
 }
 
-# Email Configuration
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For testing
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # For production
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-EMAIL_TIMEOUT = 60
-EMAIL_HOST_USER = 'dedeexpeditions@gmail.com'
-EMAIL_HOST_PASSWORD = 'roqu frlt wvof rqxk'
-DEFAULT_FROM_EMAIL = 'Live Great Foundation Technical Team <dedeexpeditions@gmail.com>'
-
-# SSL Configuration for email
-import ssl
-EMAIL_SSL_CERTFILE = None
-EMAIL_SSL_KEYFILE = None
+# Email Configuration using environment variables
+EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com')
+EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=False, cast=bool)
+EMAIL_TIMEOUT = config('EMAIL_TIMEOUT', default=60, cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='Live Great Foundation Technical Team <noreply@livegreatfoundation.org>')
 
 # Email Notification Settings
-LGF_ADMIN_EMAIL = 'info@livegreatfoundation.org'
-LGF_NOTIFICATION_ENABLED = True
+LGF_ADMIN_EMAIL = config('LGF_ADMIN_EMAIL', default='info@livegreatfoundation.org')
+LGF_NOTIFICATION_ENABLED = config('LGF_NOTIFICATION_ENABLED', default=True, cast=bool)
+
+# Production Security Settings
+if not DEBUG:
+    # HTTPS and Security Headers
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
+    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=31536000, cast=int)  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True, cast=bool)
+    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=True, cast=bool)
+    SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default=True, cast=bool)
+    SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=True, cast=bool)
+    X_FRAME_OPTIONS = config('X_FRAME_OPTIONS', default='DENY')
+
+    # Secure Cookies
+    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
+    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
+    SESSION_COOKIE_HTTPONLY = config('SESSION_COOKIE_HTTPONLY', default=True, cast=bool)
+    CSRF_COOKIE_HTTPONLY = config('CSRF_COOKIE_HTTPONLY', default=True, cast=bool)
+
+    # Additional Security Settings
+    SECURE_REFERRER_POLICY = config('SECURE_REFERRER_POLICY', default='strict-origin-when-cross-origin')
+
+# Site Configuration
+SITE_URL = config('SITE_URL', default='http://localhost:8000')
+SITE_NAME = config('SITE_NAME', default='Live Great Foundation')
+
+# Logging Configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose' if DEBUG else 'simple',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'django.log',
+            'formatter': 'verbose',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'] if not DEBUG else ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'notifications': {
+            'handlers': ['console', 'file'] if not DEBUG else ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'blogapp': {
+            'handlers': ['console', 'file'] if not DEBUG else ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}

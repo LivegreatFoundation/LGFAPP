@@ -1,0 +1,119 @@
+# Live Great Foundation - Render Infrastructure as Code
+# This file defines the infrastructure for deploying on Render
+
+services:
+  # Web Service - Django Application
+  - type: web
+    name: live-great-foundation
+    runtime: python3
+    plan: starter  # Change to 'standard' or 'pro' for production
+    region: oregon  # Choose your preferred region
+    branch: main  # Deploy from main branch
+    
+    # Build Configuration
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn blog.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120"
+    
+    # Health Check
+    healthCheckPath: /admin/login/
+    
+    # Environment Variables
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: PORT
+        value: 10000
+      - key: WEB_CONCURRENCY
+        value: 3
+      - key: DJANGO_SETTINGS_MODULE
+        value: blog.settings
+        
+      # Django Core Settings (set these in Render dashboard)
+      - key: SECRET_KEY
+        sync: false  # Set manually in Render dashboard
+      - key: DEBUG
+        value: False
+      - key: ALLOWED_HOSTS
+        sync: false  # Set manually in Render dashboard
+        
+      # Database Configuration
+      - key: DATABASE_URL
+        sync: false  # Set manually in Render dashboard
+        
+      # Email Configuration
+      - key: EMAIL_BACKEND
+        value: django.core.mail.backends.smtp.EmailBackend
+      - key: EMAIL_HOST
+        value: smtp.gmail.com
+      - key: EMAIL_PORT
+        value: 587
+      - key: EMAIL_USE_TLS
+        value: True
+      - key: EMAIL_USE_SSL
+        value: False
+      - key: EMAIL_TIMEOUT
+        value: 60
+      - key: EMAIL_HOST_USER
+        sync: false  # Set manually in Render dashboard
+      - key: EMAIL_HOST_PASSWORD
+        sync: false  # Set manually in Render dashboard
+      - key: DEFAULT_FROM_EMAIL
+        value: Live Great Foundation Technical Team <noreply@livegreatfoundation.org>
+        
+      # Email Notification Settings
+      - key: LGF_ADMIN_EMAIL
+        value: info@livegreatfoundation.org
+      - key: LGF_NOTIFICATION_ENABLED
+        value: True
+        
+      # Security Settings
+      - key: SECURE_SSL_REDIRECT
+        value: True
+      - key: SECURE_HSTS_SECONDS
+        value: 31536000
+      - key: SECURE_HSTS_INCLUDE_SUBDOMAINS
+        value: True
+      - key: SECURE_HSTS_PRELOAD
+        value: True
+      - key: SECURE_CONTENT_TYPE_NOSNIFF
+        value: True
+      - key: SECURE_BROWSER_XSS_FILTER
+        value: True
+      - key: X_FRAME_OPTIONS
+        value: DENY
+      - key: SESSION_COOKIE_SECURE
+        value: True
+      - key: CSRF_COOKIE_SECURE
+        value: True
+      - key: SESSION_COOKIE_HTTPONLY
+        value: True
+      - key: CSRF_COOKIE_HTTPONLY
+        value: True
+      - key: SECURE_REFERRER_POLICY
+        value: strict-origin-when-cross-origin
+        
+      # Site Configuration
+      - key: SITE_URL
+        sync: false  # Set manually in Render dashboard
+      - key: SITE_NAME
+        value: Live Great Foundation
+        
+    # Disk Configuration for static files
+    disk:
+      name: static-files
+      mountPath: /opt/render/project/src/staticfiles
+      sizeGB: 1
+
+# Optional: Database service (if not using external Supabase)
+# databases:
+#   - name: live-great-foundation-db
+#     plan: starter
+#     region: oregon
+#     databaseName: lgf_production
+#     user: lgf_user
+
+# Optional: Redis service (for caching)
+# - type: redis
+#   name: live-great-foundation-redis
+#   plan: starter
+#   region: oregon
