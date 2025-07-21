@@ -2,13 +2,13 @@
 # This file defines the infrastructure for deploying on Render
 
 services:
-  # Web Service - Django Application
+  # Web Service - Django Application with Enhanced CMS
   - type: web
-    name: live-great-foundation
+    name: livegreatfoundation
     runtime: python3
     plan: starter  # Change to 'standard' or 'pro' for production
     region: oregon  # Choose your preferred region
-    branch: wearelive # Deploy from main branch
+    branch: main # Deploy from main branch
     
     # Build Configuration
     buildCommand: "./build.sh"
@@ -27,6 +27,8 @@ services:
         value: 3
       - key: DJANGO_SETTINGS_MODULE
         value: blog.settings
+      - key: DJANGO_ENV
+        value: production
         
       # Django Core Settings (set these in Render dashboard)
       - key: SECRET_KEY

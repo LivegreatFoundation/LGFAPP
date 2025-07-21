@@ -22,13 +22,31 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
+# Environment Configuration
+DJANGO_ENV = config('DJANGO_ENV', default='development')
+IS_DEVELOPMENT = DJANGO_ENV == 'development'
+IS_PRODUCTION = DJANGO_ENV == 'production'
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default='jqx3e+sq2(sja+kuxr6(t5oijbe6(9jaf!1ieat0raf0nb&w=w')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=IS_DEVELOPMENT, cast=bool)
 
-# Production-ready ALLOWED_HOSTS configuration
+# Print environment information on startup
+if DEBUG:
+    db_type = "SQLite" if 'sqlite' in config('DATABASE_URL', default='') else "PostgreSQL"
+    print(f"\n🌍 Environment: {DJANGO_ENV.upper()}")
+    print(f"🐛 Debug Mode: {DEBUG}")
+    print(f"🗄️  Database: {db_type}")
+    print(f"🔒 SSL Redirect: {config('SECURE_SSL_REDIRECT', default=False, cast=bool)}")
+    print(f"🍪 Secure Cookies: {config('SESSION_COOKIE_SECURE', default=False, cast=bool)}")
+    print(f"📧 Email Backend: {config('EMAIL_BACKEND', default='console').split('.')[-1]}")
+    print(f"🌐 Site URL: {config('SITE_URL', default='http://localhost:8000')}")
+    print(f"🏠 Allowed Hosts: {config('ALLOWED_HOSTS', default='localhost,127.0.0.1')}")
+    print("=" * 60)
+
+# Environment-aware ALLOWED_HOSTS configuration
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1').split(',')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -94,18 +112,29 @@ WHITENOISE_MANIFEST_STRICT = False
 
 
 # Database configuration using environment variables
-DATABASE_URL = config('DATABASE_URL', default='postgresql://postgres.rhphjdabjfllajcwrbra:LGFweb2025!keke@aws-0-eu-central-1.pooler.supabase.com:6543/postgres')
+if IS_DEVELOPMENT:
+    # Development: Use SQLite by default
+    DATABASE_URL = config('DATABASE_URL', default='sqlite:///db.sqlite3')
+else:
+    # Production: Use Supabase PostgreSQL
+    DATABASE_URL = config('DATABASE_URL', default='postgresql://postgres.rhphjdabjfllajcwrbra:LGFweb2025!keke@aws-0-eu-central-1.pooler.supabase.com:6543/postgres')
 
 DATABASES = {
     'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, conn_health_checks=True)
 }
 
-# Ensure SSL is required for production database connections
-if not DEBUG:
+# Configure database options based on environment
+if IS_PRODUCTION and 'postgresql' in DATABASE_URL:
+    # Production PostgreSQL: Require SSL and set connection options
     DATABASES['default']['OPTIONS'] = {
         'sslmode': 'require',
         'connect_timeout': 10,
         'options': '-c default_transaction_isolation=read_committed'
+    }
+elif IS_DEVELOPMENT and 'sqlite' in DATABASE_URL:
+    # Development SQLite: Set timeout for better concurrency
+    DATABASES['default']['OPTIONS'] = {
+        'timeout': 20,
     }
 
 
@@ -160,7 +189,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"# Template settings
+# Static files storage configuration
+if IS_PRODUCTION:
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+else:
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+
+# Template settings
 
 ## For media files
 UPLOADCARE = {
@@ -240,9 +275,9 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='Live Great Foundation
 LGF_ADMIN_EMAIL = config('LGF_ADMIN_EMAIL', default='info@livegreatfoundation.org')
 LGF_NOTIFICATION_ENABLED = config('LGF_NOTIFICATION_ENABLED', default=True, cast=bool)
 
-# Production Security Settings
-if not DEBUG:
-    # HTTPS and Security Headers
+# Environment-Based Security Settings
+if IS_PRODUCTION:
+    # Production: Enable all security features
     SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
     SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=31536000, cast=int)  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True, cast=bool)
@@ -251,13 +286,32 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=True, cast=bool)
     X_FRAME_OPTIONS = config('X_FRAME_OPTIONS', default='DENY')
 
-    # Secure Cookies
+    # Secure Cookies (HTTPS only)
     SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
     CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
     SESSION_COOKIE_HTTPONLY = config('SESSION_COOKIE_HTTPONLY', default=True, cast=bool)
     CSRF_COOKIE_HTTPONLY = config('CSRF_COOKIE_HTTPONLY', default=True, cast=bool)
 
     # Additional Security Settings
+    SECURE_REFERRER_POLICY = config('SECURE_REFERRER_POLICY', default='strict-origin-when-cross-origin')
+
+else:
+    # Development: Disable SSL/HTTPS requirements for HTTP development
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
+    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=0, cast=int)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
+    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
+    SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default=True, cast=bool)
+    SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=True, cast=bool)
+    X_FRAME_OPTIONS = config('X_FRAME_OPTIONS', default='DENY')
+
+    # Insecure Cookies (HTTP development)
+    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
+    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
+    SESSION_COOKIE_HTTPONLY = config('SESSION_COOKIE_HTTPONLY', default=True, cast=bool)
+    CSRF_COOKIE_HTTPONLY = config('CSRF_COOKIE_HTTPONLY', default=True, cast=bool)
+
+    # Development Security Settings
     SECURE_REFERRER_POLICY = config('SECURE_REFERRER_POLICY', default='strict-origin-when-cross-origin')
 
 # Site Configuration

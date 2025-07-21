@@ -1,0 +1,225 @@
+/* Custom CSS for Website Content Admin Interface */
+
+/* Fieldset styling */
+.fieldset {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.fieldset h2 {
+    background: linear-gradient(135deg, #366092 0%, #2a4d73 100%);
+    color: white;
+    padding: 10px 15px;
+    margin: -15px -15px 15px -15px;
+    border-radius: 7px 7px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Content type field styling */
+.field-content_type select {
+    background: #f8f9fa;
+    border: 2px solid #366092;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Page field styling */
+.field-page select {
+    background: #e3f2fd;
+    border: 2px solid #2196f3;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Active status styling */
+.field-is_active input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+/* Display order field */
+.field-display_order input {
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    background: #fff3e0;
+    border: 2px solid #ff9800;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+/* Help text styling */
+.help {
+    background: #f0f8ff;
+    border-left: 4px solid #366092;
+    padding: 8px 12px;
+    margin-top: 5px;
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+    color: #555;
+}
+
+/* List view enhancements */
+.admin-object-tools {
+    background: linear-gradient(135deg, #366092 0%, #2a4d73 100%);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.admin-object-tools a {
+    background: white;
+    color: #366092;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.admin-object-tools a:hover {
+    background: #f0f8ff;
+    transform: translateY(-1px);
+}
+
+/* Table styling */
+.results table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.results th {
+    background: linear-gradient(135deg, #366092 0%, #2a4d73 100%);
+    color: white;
+    padding: 12px 8px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.results td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.results tr:hover {
+    background: #f8f9fa;
+}
+
+/* Status indicators */
+.field-is_active img[alt="True"] {
+    display: none;
+}
+
+.field-is_active img[alt="True"]:after {
+    content: "✅ Active";
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.field-is_active img[alt="False"]:after {
+    content: "❌ Inactive";
+    color: #f44336;
+    font-weight: bold;
+}
+
+/* Form field improvements */
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Rich text editor enhancements */
+.prose-editor {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.prose-editor:focus-within {
+    border-color: #366092;
+    box-shadow: 0 0 0 3px rgba(54, 96, 146, 0.1);
+}
+
+/* Image upload styling */
+.field-image .file-upload {
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.field-image .file-upload:hover {
+    border-color: #366092;
+    background: #f8f9fa;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .fieldset {
+        margin: 10px 0;
+        padding: 10px;
+    }
+    
+    .fieldset h2 {
+        margin: -10px -10px 10px -10px;
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+    
+    .results table {
+        font-size: 12px;
+    }
+    
+    .results th,
+    .results td {
+        padding: 6px 4px;
+    }
+}
+
+/* Success messages */
+.messagelist .success {
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    border: none;
+}
+
+/* Error messages */
+.messagelist .error {
+    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    border: none;
+}
+
+/* Info messages */
+.messagelist .info {
+    background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    border: none;
+}

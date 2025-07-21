@@ -1,0 +1,302 @@
+/* Enhanced Admin CSS for Live Great Foundation CMS */
+
+/* ============================================================================
+   GENERAL ADMIN ENHANCEMENTS
+   ============================================================================ */
+
+.admin-enhanced {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Improved form styling */
+.form-row {
+    margin-bottom: 20px;
+}
+
+.form-row .field-box {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+/* Enhanced fieldsets */
+fieldset.module {
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+fieldset.module h2 {
+    background: linear-gradient(135deg, #366092 0%, #2a4d73 100%);
+    color: white;
+    padding: 12px 20px;
+    margin: 0;
+    border-radius: 8px 8px 0 0;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+fieldset.module .module {
+    padding: 20px;
+}
+
+/* ============================================================================
+   CONTENT MANAGEMENT SPECIFIC STYLES
+   ============================================================================ */
+
+/* Page Section Admin */
+.page-section-admin .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.page-section-admin .form-row > div {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Content Block Inline Styling */
+.inline-group .tabular {
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.inline-group .tabular thead th {
+    background: #366092;
+    color: white;
+    font-weight: 600;
+    padding: 12px 8px;
+    text-align: left;
+}
+
+.inline-group .tabular tbody tr {
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.inline-group .tabular tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* ============================================================================
+   PROSE EDITOR ENHANCEMENTS
+   ============================================================================ */
+
+.prose-editor-container {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.prose-editor-toolbar {
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 8px 12px;
+}
+
+.prose-editor-content {
+    min-height: 200px;
+    padding: 15px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* ============================================================================
+   IMAGE PREVIEW ENHANCEMENTS
+   ============================================================================ */
+
+.image-preview {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 10px 0;
+}
+
+.image-upload-area {
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.image-upload-area:hover {
+    border-color: #366092;
+    background: #e8f4fd;
+}
+
+.image-upload-area .upload-icon {
+    font-size: 48px;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+/* ============================================================================
+   BUTTON ENHANCEMENTS
+   ============================================================================ */
+
+.button, input[type="submit"], .submit-row input {
+    background: linear-gradient(135deg, #366092 0%, #2a4d73 100%);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover, input[type="submit"]:hover, .submit-row input:hover {
+    background: linear-gradient(135deg, #2a4d73 0%, #1e3a5f 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(54, 96, 146, 0.3);
+}
+
+.button.preview-button {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    font-size: 12px;
+    padding: 6px 12px;
+}
+
+.button.preview-button:hover {
+    background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+}
+
+/* ============================================================================
+   LIST VIEW ENHANCEMENTS
+   ============================================================================ */
+
+.results table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.results table thead th {
+    background: linear-gradient(135deg, #366092 0%, #2a4d73 100%);
+    color: white;
+    font-weight: 600;
+    padding: 15px 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+}
+
+.results table tbody tr {
+    border-bottom: 1px solid #f1f3f4;
+    transition: background-color 0.2s ease;
+}
+
+.results table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.results table tbody td {
+    padding: 12px;
+    vertical-align: middle;
+}
+
+/* ============================================================================
+   STATUS INDICATORS
+   ============================================================================ */
+
+.status-active {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.status-inactive {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.status-featured {
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* ============================================================================
+   HELP TEXT ENHANCEMENTS
+   ============================================================================ */
+
+.help {
+    background: #e8f4fd;
+    border: 1px solid #bee5eb;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #0c5460;
+    line-height: 1.4;
+}
+
+.help::before {
+    content: "💡 ";
+    margin-right: 5px;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .form-row > div {
+        min-width: 100%;
+    }
+    
+    .results table {
+        font-size: 14px;
+    }
+    
+    .results table thead th,
+    .results table tbody td {
+        padding: 8px 6px;
+    }
+}
+
+/* ============================================================================
+   DARK MODE SUPPORT
+   ============================================================================ */
+
+@media (prefers-color-scheme: dark) {
+    .form-row .field-box {
+        background: #2d3748;
+        border-color: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    fieldset.module {
+        background: #2d3748;
+        border-color: #4a5568;
+    }
+    
+    .help {
+        background: #2a4d73;
+        border-color: #366092;
+        color: #e8f4fd;
+    }
+}

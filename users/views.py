@@ -1,14 +1,44 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
-from . models import Editpage,SecondSection,SecondSectionIcon,SecondSectionBox
-
-from django.shortcuts import render,redirect,HttpResponse
+from django.shortcuts import render, redirect, HttpResponse
 from django.http import Http404
+from django.core.paginator import Paginator
+from django.db.models import Q
+
+# Import all models
+from .models import (
+    Editpage, SecondSection, SecondSectionIcon, SecondSectionBox,
+    PageSection, ContentBlock, TeamMember, Program, ProgramImage, SiteSettings
+)
 
 
 def home(request):
-    # Fetch all the sections from the database based on the section names
+    """
+    Enhanced home view that uses both legacy and new content management systems
+    """
+    # Get site settings
+    site_settings = SiteSettings.objects.first()
+
+    # Get new page sections for home page
+    home_sections = PageSection.objects.filter(
+        page='home',
+        is_active=True
+    ).prefetch_related('content_blocks').order_by('order')
+
+    # Get featured programs
+    featured_programs = Program.objects.filter(
+        is_featured=True,
+        is_active=True
+    ).order_by('order')[:3]
+
+    # Get featured team members
+    featured_team = TeamMember.objects.filter(
+        is_featured=True,
+        is_active=True
+    ).order_by('order')[:3]
+
+    # Legacy content (for backward compatibility)
     hnew = Editpage.objects.filter(section_name='hnew').first()
     hneww = Editpage.objects.filter(section_name='hneww').first()
     hnewww = Editpage.objects.filter(section_name='hnewww').first()
@@ -28,8 +58,17 @@ def home(request):
     second_section_icons = SecondSectionIcon.objects.all().order_by('order')
     second_section_box = SecondSectionBox.objects.first()
 
-    # Add all the variables to the context dictionary
+    # Enhanced context with both new and legacy content
     content = {
+        # Site settings
+        'site_settings': site_settings,
+
+        # New content management system
+        'home_sections': home_sections,
+        'featured_programs': featured_programs,
+        'featured_team': featured_team,
+
+        # Legacy content (for backward compatibility)
         'Programme1': Programme1,
         'Programme2': Programme2,
         'Programme3': Programme3,
@@ -44,7 +83,7 @@ def home(request):
         'team1': team1,
         'team2': team2,
         'team3': team3,
-        'second_section': second_section ,
+        'second_section': second_section,
         'second_section_icons': second_section_icons,
         'second_section_box': second_section_box,
 
@@ -155,6 +194,149 @@ def login(request):
             return redirect('.')
     else:
         return render(request, 'login.html')
+
+
+# ============================================================================
+# ENHANCED CONTENT MANAGEMENT VIEWS
+# ============================================================================
+
+def enhanced_about(request):
+    """Enhanced about page using new content management system"""
+    site_settings = SiteSettings.objects.first()
+    about_sections = PageSection.objects.filter(
+        page='about',
+        is_active=True
+    ).prefetch_related('content_blocks').order_by('order')
+
+    team_members = TeamMember.objects.filter(is_active=True).order_by('order')
+
+    context = {
+        'site_settings': site_settings,
+        'about_sections': about_sections,
+        'team_members': team_members,
+    }
+
+    return render(request, 'enhanced_about.html', context)
+
+
+def enhanced_programs(request):
+    """Enhanced programs page using new content management system"""
+    site_settings = SiteSettings.objects.first()
+    programs_sections = PageSection.objects.filter(
+        page='programs',
+        is_active=True
+    ).prefetch_related('content_blocks').order_by('order')
+
+    programs = Program.objects.filter(is_active=True).order_by('order')
+
+    context = {
+        'site_settings': site_settings,
+        'programs_sections': programs_sections,
+        'programs': programs,
+    }
+
+    return render(request, 'enhanced_programs.html', context)
+
+
+def program_detail(request, slug):
+    """Individual program detail page"""
+    program = get_object_or_404(Program, slug=slug, is_active=True)
+    site_settings = SiteSettings.objects.first()
+
+    # Get related programs
+    related_programs = Program.objects.filter(
+        is_active=True
+    ).exclude(id=program.id).order_by('order')[:3]
+
+    context = {
+        'site_settings': site_settings,
+        'program': program,
+        'related_programs': related_programs,
+    }
+
+    return render(request, 'program_detail.html', context)
+
+
+def enhanced_team(request):
+    """Enhanced team page using new content management system"""
+    site_settings = SiteSettings.objects.first()
+    team_sections = PageSection.objects.filter(
+        page='team',
+        is_active=True
+    ).prefetch_related('content_blocks').order_by('order')
+
+    team_members = TeamMember.objects.filter(is_active=True).order_by('order')
+
+    context = {
+        'site_settings': site_settings,
+        'team_sections': team_sections,
+        'team_members': team_members,
+    }
+
+    return render(request, 'enhanced_team.html', context)
+
+
+def enhanced_contact(request):
+    """Enhanced contact page using new content management system"""
+    site_settings = SiteSettings.objects.first()
+    contact_sections = PageSection.objects.filter(
+        page='contact',
+        is_active=True
+    ).prefetch_related('content_blocks').order_by('order')
+
+    context = {
+        'site_settings': site_settings,
+        'contact_sections': contact_sections,
+    }
+
+    return render(request, 'enhanced_contact.html', context)
+
+
+def search_content(request):
+    """Search functionality for content"""
+    query = request.GET.get('q', '')
+    results = []
+
+    if query:
+        # Search in page sections
+        section_results = PageSection.objects.filter(
+            Q(title__icontains=query) |
+            Q(heading__icontains=query) |
+            Q(content__icontains=query),
+            is_active=True
+        )
+
+        # Search in programs
+        program_results = Program.objects.filter(
+            Q(name__icontains=query) |
+            Q(short_description__icontains=query) |
+            Q(full_description__icontains=query),
+            is_active=True
+        )
+
+        # Search in team members
+        team_results = TeamMember.objects.filter(
+            Q(name__icontains=query) |
+            Q(position__icontains=query) |
+            Q(bio__icontains=query),
+            is_active=True
+        )
+
+        results = {
+            'sections': section_results,
+            'programs': program_results,
+            'team': team_results,
+            'query': query,
+        }
+
+    site_settings = SiteSettings.objects.first()
+    context = {
+        'site_settings': site_settings,
+        'results': results,
+        'query': query,
+    }
+
+    return render(request, 'search_results.html', context)
 
 def logout(request):
     auth.logout(request)

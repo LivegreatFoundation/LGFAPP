@@ -1,0 +1,33 @@
+{% comment %}
+Template for rendering website content sections
+Used by the render_content_section template tag
+{% endcomment %}
+
+{% if content %}
+<{{ wrapper_tag }}{% if css_class %} class="{{ css_class }}"{% endif %}>
+    {% if content.heading %}
+        <h2 class="content-heading">{{ content.heading|safe }}</h2>
+    {% endif %}
+    
+    {% if content.image %}
+        <div class="content-image">
+            <img src="{{ content.image.url }}" alt="{{ content.heading|default:'Content Image' }}" class="img-fluid">
+        </div>
+    {% endif %}
+    
+    {% if content.content %}
+        <div class="content-body">
+            {{ content.content|safe }}
+        </div>
+    {% endif %}
+</{{ wrapper_tag }}>
+{% else %}
+    {% comment %}
+    Content not found or inactive - you can customize this fallback
+    {% endcomment %}
+    <{{ wrapper_tag }}{% if css_class %} class="{{ css_class }}"{% endif %}>
+        <div class="content-placeholder">
+            <p><em>Content not available</em></p>
+        </div>
+    </{{ wrapper_tag }}>
+{% endif %}

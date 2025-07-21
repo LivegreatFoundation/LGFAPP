@@ -1,0 +1,7 @@
+INFO 2025-07-20 21:23:50,861 autoreload 77097 8211954368 Watching for file changes with StatReloader
+INFO 2025-07-20 21:24:09,910 basehttp 77097 6162264064 "GET /admin/ HTTP/1.1" 301 0
+INFO 2025-07-20 21:24:09,957 basehttp 77097 6162264064 code 400, message Bad request version ('«²vª÷âhú\x07S')
+ERROR 2025-07-20 21:24:09,958 basehttp 77097 6162264064 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-07-20 21:24:09,960 basehttp 77097 6162264064 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06²\x01\x00\x06®\x03\x03ÕýëÙXðíS\x1b¨§¶-çîòÜU3{»ë')
+ERROR 2025-07-20 21:24:09,961 basehttp 77097 6162264064 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-07-20 21:33:56,806 autoreload 77097 8211954368 /Users/djsean/Desktop/CLIENTS 2024/LIVE GREAT FOUNDATION/LGFWEBAPP/blog/settings.py changed, reloading.
